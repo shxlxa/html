@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色选择器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .color-picker {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+        .color-area {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to right, #fff, rgba(255,255,255,0)),
+                        linear-gradient(to top, #000, rgba(0,0,0,0));
+            border: 1px solid #ccc;
+            cursor: crosshair;
+        }
+        .color-slider {
+            width: 20px;
+            height: 200px;
+            margin-left: 10px;
+            background: linear-gradient(to top, red, yellow, lime, cyan, blue, magenta, red);
+            cursor: pointer;
+        }
+        .color-display {
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+            border: 1px solid #ccc;
+        }
+        .inputs {
+            margin-top: 20px;
+        }
+        .inputs input {
+            margin: 5px;
+            width: 60px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="color-picker">
+            <div class="color-area" id="colorArea"></div>
+            <div class="color-slider" id="colorSlider"></div>
+            <div class="color-display" id="colorDisplay"></div>
+        </div>
+        <div class="inputs">
+            <label>HEX: <input type="text" id="hexInput" value="#995766"></label>
+            <label>R: <input type="number" id="rInput" value="153" min="0" max="255"></label>
+            <label>G: <input type="number" id="gInput" value="87" min="0" max="255"></label>
+            <label>B: <input type="number" id="bInput" value="102" min="0" max="255"></label>
+        </div>
+    </div>
+    <script>
+        const colorArea = document.getElementById('colorArea');
+        const colorSlider = document.getElementById('colorSlider');
+        const colorDisplay = document.getElementById('colorDisplay');
+        const hexInput = document.getElementById('hexInput');
+        const rInput = document.getElementById('rInput');
+        const gInput = document.getElementById('gInput');
+        const bInput = document.getElementById('bInput');
+
+        function updateColorDisplay(hex) {
+            colorDisplay.style.backgroundColor = hex;
+            hexInput.value = hexInput.value.startsWith('0x') ? '0x' + hex.slice(1) : hex;
+            const rgb = hexToRgb(hex);
+            rInput.value = rgb.r;
+            gInput.value = rgb.g;
+            bInput.value = rgb.b;
+        }
+
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return { r, g, b };
+        }
+
+        function rgbToHex(r, g, b) {
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+        }
+
+        // 初始化颜色
+        updateColorDisplay('#995766');
+
+        // 添加事件监听器
+        colorArea.addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            // 这里需要根据点击位置计算颜色
+        });
+
+        colorSlider.addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const y = e.clientY - rect.top;
+            // 这里需要根据点击位置计算色相
+        });
+
+        // RGB 输入框变化时更新颜色
+        [rInput, gInput, bInput].forEach(input => {
+            input.addEventListener('input', () => {
+                const r = parseInt(rInput.value) || 0;
+                const g = parseInt(gInput.value) || 0;
+                const b = parseInt(bInput.value) || 0;
+                const hex = rgbToHex(r, g, b);
+                updateColorDisplay(hex);
+            });
+        });
+
+        // 修改 HEX 输入框变化时更新颜色的逻辑
+        hexInput.addEventListener('input', (e) => {
+            let hex = e.target.value;
+            
+            // 处理 0x 格式
+            if (hex.startsWith('0x')) {
+                hex = '#' + hex.slice(2);
+            }
+            
+            // 检查是否是有效的颜色值（支持 #666666 和 0x666666 格式）
+            if (/^#[0-9A-Fa-f]{6}$/.test(hex) || /^0x[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+                updateColorDisplay(hex);
+            }
+        });
+    </script>
+</body>
+</html>
