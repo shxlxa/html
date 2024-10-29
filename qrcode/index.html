@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维码生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="qrcode.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <textarea id="text-input" placeholder="请输入二维码的内容"></textarea>
+            <button class="generate-btn" onclick="generateQRCode()">生成二维码</button>
+        </div>
+        <div class="output-section">
+            <div id="qrcode"></div>
+            <button class="download-btn" onclick="downloadQRCode()" style="display: none;">下载</button>
+        </div>
+    </div>
+</body>
+</html>
