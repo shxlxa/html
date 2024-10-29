@@ -31,46 +31,146 @@
             border: 1px solid #ccc;
             cursor: crosshair;
         }
+        .color-picker-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
         .color-slider {
+            position: relative;
             width: 20px;
             height: 200px;
             margin-left: 10px;
+            margin-right: 30px;
             background: linear-gradient(to top, red, yellow, lime, cyan, blue, magenta, red);
             cursor: pointer;
         }
+        .hue-slider {
+            position: absolute;
+            left: -3px;
+            width: 26px;
+            height: 8px;
+            background: white;
+            border-radius: 4px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            box-shadow: 0 0 3px rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,0,0,0.2);
+        }
         .color-display {
-            width: 100px;
-            height: 100px;
-            margin-left: 20px;
-            border: 1px solid #ccc;
-        }
-        .inputs {
-            margin-top: 20px;
-        }
-        .inputs input {
-            margin: 5px;
-            width: 60px;
-            padding: 4px;
+            width: 150px;
+            height: 150px;
+            margin-left: 30px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        label {
+        .inputs {
+            margin-top: 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 15px 20px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .inputs .hex-input {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .inputs .hex-input label {
+            width: 30px;
             margin-right: 10px;
+        }
+        .inputs .rgb-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .inputs .rgb-value {
+            margin-left: 10px;
+            color: #666;
+            min-width: 120px;
+            display: inline-block;
+        }
+        .inputs label {
+            display: inline-block;
+            width: 45px;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        .inputs input {
+            width: 70px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 3px 0;
+        }
+        .rgb-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .rgb-input-container {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .inputs input {
+            width: 60px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 3px 0;
+        }
+        .inputs label {
+            display: inline-block;
+            width: 25px;
+            margin-right: 2px;
+            font-weight: bold;
+        }
+        .rgb-value {
+            color: #666;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="color-picker">
-            <div class="color-area" id="colorArea"></div>
-            <div class="color-slider" id="colorSlider"></div>
+            <div class="color-area" id="colorArea">
+                <div class="color-picker-dot" id="colorPickerDot"></div>
+            </div>
+            <div class="color-slider" id="colorSlider">
+                <div class="hue-slider" id="hueSlider"></div>
+            </div>
             <div class="color-display" id="colorDisplay"></div>
         </div>
         <div class="inputs">
-            <label>HEX: <input type="text" id="hexInput" value="#995766"></label>
-            <label>R: <input type="number" id="rInput" value="153" min="0" max="255"></label>
-            <label>G: <input type="number" id="gInput" value="87" min="0" max="255"></label>
-            <label>B: <input type="number" id="bInput" value="102" min="0" max="255"></label>
+            <div class="hex-input">
+                <label>HEX</label>
+                <input type="text" id="hexInput" value="#995766">
+            </div>
+            <div class="rgb-input-container">
+                <div>
+                    <label>R:</label>
+                    <input type="number" id="rInput" value="153" min="0" max="255">
+                </div>
+                <div>
+                    <label>G:</label>
+                    <input type="number" id="gInput" value="87" min="0" max="255">
+                </div>
+                <div>
+                    <label>B:</label>
+                    <input type="number" id="bInput" value="102" min="0" max="255">
+                </div>
+            </div>
+            <div class="rgb-value" id="rgbValue">rgb(153, 87, 102)</div>
         </div>
     </div>
     <script>
@@ -81,6 +181,8 @@
         const rInput = document.getElementById('rInput');
         const gInput = document.getElementById('gInput');
         const bInput = document.getElementById('bInput');
+        const colorPickerDot = document.getElementById('colorPickerDot');
+        const hueSlider = document.getElementById('hueSlider');
 
         function updateColorDisplay(hex) {
             colorDisplay.style.backgroundColor = hex;
@@ -89,6 +191,7 @@
             rInput.value = rgb.r;
             gInput.value = rgb.g;
             bInput.value = rgb.b;
+            document.getElementById('rgbValue').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
         }
 
         function hexToRgb(hex) {
@@ -106,19 +209,106 @@
         // 初始化颜色
         updateColorDisplay('#995766');
 
-        // 添加事件监听器
-        colorArea.addEventListener('click', (e) => {
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            // 这里需要根据点击位置计算颜色
+        let baseHue = 0; // 基础色相值
+        
+        // 更新颜色区域的背景色
+        function updateColorArea(hue) {
+            colorArea.style.background = `
+                linear-gradient(to right, 
+                    hsl(${hue}, 100%, 50%),
+                    rgba(255,255,255,0)),
+                linear-gradient(to top, #000, rgba(0,0,0,0))
+            `;
+        }
+
+        // 根据点击位置计算颜色
+        function calculateColor(x, y, width, height) {
+            // 将坐标转换为百分比
+            const saturation = (x / width) * 100;
+            const brightness = 100 - (y / height) * 100;
+            
+            // 使用当前色相值和计算出的饱和度、亮度创建颜色
+            const hslColor = `hsl(${baseHue}, ${saturation}%, ${brightness}%)`;
+            
+            // 创建一个临时元素来获取RGB值
+            const temp = document.createElement('div');
+            temp.style.color = hslColor;
+            document.body.appendChild(temp);
+            const rgbString = window.getComputedStyle(temp).color;
+            document.body.removeChild(temp);
+            
+            // 解析RGB值
+            const [r, g, b] = rgbString.match(/\d+/g).map(Number);
+            return rgbToHex(r, g, b);
+        }
+
+        // 更新选择点位置的函数
+        function updatePickerDot(x, y) {
+            colorPickerDot.style.left = `${x}px`;
+            colorPickerDot.style.top = `${y}px`;
+        }
+
+        // 更新色相滑块位置的函数
+        function updateHueSlider(hue) {
+            const position = (360 - hue) / 360 * colorSlider.offsetHeight;
+            hueSlider.style.top = `${position}px`;
+        }
+
+        // 修改颜色区域的点击事件
+        colorArea.addEventListener('mousedown', (e) => {
+            const rect = colorArea.getBoundingClientRect();
+            const handleColorSelection = (event) => {
+                const x = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
+                const y = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+                updatePickerDot(x, y);  // 更新选择点位置
+                const hex = calculateColor(x, y, rect.width, rect.height);
+                updateColorDisplay(hex);
+            };
+
+            handleColorSelection(e);
+
+            const mouseMoveHandler = (event) => {
+                handleColorSelection(event);
+            };
+
+            const mouseUpHandler = () => {
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
         });
 
-        colorSlider.addEventListener('click', (e) => {
-            const rect = e.target.getBoundingClientRect();
-            const y = e.clientY - rect.top;
-            // 这里需要根据点击位置计算色相
+        // 修改色相滑块的点击事件
+        colorSlider.addEventListener('mousedown', (e) => {
+            const rect = colorSlider.getBoundingClientRect();
+            
+            const handleHueSelection = (event) => {
+                const y = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+                baseHue = 360 - (y / rect.height * 360);
+                updateHueSlider(baseHue);  // 更新滑块位置
+                updateColorArea(baseHue);
+            };
+
+            handleHueSelection(e);
+
+            const mouseMoveHandler = (event) => {
+                handleHueSelection(event);
+            };
+
+            const mouseUpHandler = () => {
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
         });
+
+        // 初始化时设置选择点和滑块的位置
+        updateHueSlider(baseHue);
+        updatePickerDot(100, 100);  // 设置初始位置在中心
 
         // RGB 输入框变化时更新颜色
         [rInput, gInput, bInput].forEach(input => {
