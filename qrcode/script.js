@@ -34,8 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.downloadQRCode = function() {
         const img = document.querySelector('#qrcode img');
         if (img) {
+            const text = document.getElementById('text-input').value;
+            // 确定文件名：如果输入内容超过10个字符，使用'qrcode'，否则使用输入内容
+            const fileName = text.length > 10 ? 'qrcode' : text;
+            
             const link = document.createElement('a');
-            link.download = 'qrcode.png';
+            link.download = `${fileName}.png`;
             link.href = img.src;
             document.body.appendChild(link);
             link.click();
