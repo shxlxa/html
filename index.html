@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>簡易計算機</title>
+	<style>
+.calculator {
+	width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.calculator h1 {
+	margin: 0 0 20px;
+	font-size: 24px;
+}
+
+.calculator input[type="text"] {
+	display: block;
+	margin: 0 auto 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 20px;
+	text-align: right;
+}
+
+.calculator button {
+	display: inline-block;
+	margin: 5px;
+	padding: 10px;
+	background-color: #fff;
+	color: #333;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 50px;
+	height: 50px;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.calculator button:hover {
+	background-color: #f5f5f5;
+}
+
+.calculator .buttons{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+	</style>
+</head>
+<body>
+	<div class="calculator">
+		<h1>簡易計算機</h1>
+		<input type="text" id="input" placeholder="0">
+		<div class="buttons">
+			<button onclick="clearInput()">C</button>
+			<button onclick="insertSymbol('%')">%</button>
+			<button onclick="calculate()">=</button>
+			<button onclick="backspace()">&larr;</button>
+
+			<button onclick="insertNumber('9')">9</button>
+			<button onclick="insertNumber('8')">8</button>
+			<button onclick="insertNumber('7')">7</button>
+			<button onclick="insertSymbol('+')">+</button>
+
+			<button onclick="insertNumber('6')">6</button>
+			<button onclick="insertNumber('5')">5</button>
+			<button onclick="insertNumber('4')">4</button>
+			<button onclick="insertSymbol('-')">-</button>
+
+			<button onclick="insertNumber('3')">3</button>
+			<button onclick="insertNumber('2')">2</button>
+			<button onclick="insertNumber('1')">1</button>
+			<button onclick="insertSymbol('*')">&times;</button>
+
+			<button></button>
+			<button onclick="insertNumber('0')">0</button>
+			<button onclick="insertDecimal('.')">.</button>
+			<button onclick="insertSymbol('/')">&divide;</button>
+
+		</div>
+	</div>
+	<script>
+let input = document.getElementById('input');
+
+function insertNumber(num) {
+	if (input.value === '0') {
+		input.value = num;
+	} else {
+		input.value += num;
+	}
+}
+
+function insertDecimal(dec) {
+	if (!input.value.includes(dec)) {
+		input.value += dec;
+	}
+}
+
+function insertSymbol(sym) {
+	if (input.value !== '' && !isNaN(input.value.slice(-1))) {
+		input.value += sym;
+	}
+}
+
+function backspace() {
+	input.value = input.value.slice(0, -1);
+}
+
+function clearInput() {
+	input.value = '0';
+}
+
+function calculate() {
+	if (input.value !== '' && !isNaN(input.value.slice(-1))) {
+		let result = eval(input.value);
+		input.value = result;
+	}
+}
+	</script>
+</body>
+</html>
