@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 编码/解码工具</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            margin-bottom: 15px;
+            font-family: monospace;
+        }
+
+        .button-group {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .encode-btn {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .decode-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        .result-container {
+            margin-top: 20px;
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            background-color: #dff0d8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .copy-text {
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* 添加 Toast 样式 */
+        .toast {
+            position: fixed;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>请输入要进行 Base64 编码或解码的字符</h1>
+    
+    <textarea id="input-text" placeholder="在此输入文本..."></textarea>
+    
+    <div class="button-group">
+        <button class="encode-btn" onclick="encode()">编码 (Encode)</button>
+        <button class="decode-btn" onclick="decode()">解码 (Decode)</button>
+    </div>
+
+    <div class="result-container">
+        <div class="result-label">Base64 编码或解码的结果：</div>
+        <textarea id="result-text" readonly></textarea>
+    </div>
+
+    <div id="success-message" class="success-message">
+        <span class="copy-text" onclick="copyResult()">复制结果</span>
+    </div>
+
+    <!-- 添加 Toast 元素 -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        function encode() {
+            const input = document.getElementById('input-text').value;
+            try {
+                const encoded = btoa(encodeURIComponent(input));
+                document.getElementById('result-text').value = encoded;
+                showSuccessMessage();
+            } catch (e) {
+                alert('编码失败，请检查输入内容');
+            }
+        }
+
+        function decode() {
+            const input = document.getElementById('input-text').value;
+            try {
+                const decoded = decodeURIComponent(atob(input));
+                document.getElementById('result-text').value = decoded;
+                showSuccessMessage();
+            } catch (e) {
+                alert('解码失败，请检查输入内容是否为有效的Base64编码');
+            }
+        }
+
+        function copyResult() {
+            const resultText = document.getElementById('result-text');
+            resultText.select();
+            document.execCommand('copy');
+            showToast('已复制到剪贴板');
+        }
+
+        function showSuccessMessage() {
+            const message = document.getElementById('success-message');
+            message.style.display = 'block';
+        }
+
+        // 添加 Toast 显示函数
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
