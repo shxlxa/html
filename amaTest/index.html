@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>打开亚马逊商品页</title>
+    <title>打开亚马逊商品页 (跨平台)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,9 +22,6 @@
             cursor: pointer;
             margin: 20px 0;
         }
-        button:hover {
-            background-color: #FF8C00;
-        }
         .status {
             margin-top: 20px;
             padding: 10px;
@@ -41,7 +38,7 @@
     </style>
 </head>
 <body>
-    <h1>亚马逊商品跳转</h1>
+    <h1>亚马逊商品跳转 (iOS/Android)</h1>
     <p>点击下方按钮尝试打开亚马逊App中的商品页面</p>
     
     <button onclick="openAmazonProduct('B08LL1HRKW', {th: 1})">打开商品页面</button>
@@ -49,6 +46,7 @@
     <div id="status" class="status" style="display: none;"></div>
     
     <script>
+        // 工具函数
         function setStatus(message, isSuccess) {
             const statusEl = document.getElementById('status');
             statusEl.textContent = message;
@@ -56,30 +54,78 @@
             statusEl.style.display = 'block';
         }
 
+        // 检测平台
+        function getPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/android/i.test(userAgent)) {
+                return 'android';
+            }
+            
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'ios';
+            }
+            
+            return 'other';
+        }
+
+        // Android专用Intent生成
+        function generateAndroidIntent(asin, params) {
+            let paramString = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+            paramString = paramString ? `?${paramString}` : '';
+            
+            return `intent://www.amazon.com/dp/${asin}${paramString}#Intent;scheme=amzn;package=com.amazon.mShop.android.shopping;action=android.intent.action.VIEW;end`;
+        }
+
+        // 主函数
         function openAmazonProduct(asin, params = {}) {
-            // 显示加载状态
-            setStatus('正在尝试打开亚马逊App...', true);
+            const platform = getPlatform();
+            setStatus(`正在尝试打开亚马逊App (${platform.toUpperCase()})...`, true);
             
-            // 构造Universal Link（保留重要参数）
-            const webUrl = new URL(`https://www.amazon.com/dp/${asin}`);
-            Object.keys(params).forEach(key => {
-                webUrl.searchParams.set(key, params[key]);
-            });
-            
-            // 第一次尝试：Universal Link
-            attemptOpen(webUrl.toString(), () => {
-                // 第二次尝试：URL Scheme
-                attemptOpen(`amzn://www.amazon.com/dp/${asin}`, () => {
-                    // 第三次尝试：备用URL Scheme
-                    attemptOpen(`com.amazon.mobile.shopping://www.amazon.com/dp/${asin}`, () => {
+            if (platform === 'ios') {
+                // iOS方案
+                const webUrl = new URL(`https://www.amazon.com/dp/${asin}`);
+                Object.keys(params).forEach(key => {
+                    webUrl.searchParams.set(key, params[key]);
+                });
+                
+                attemptOpen(webUrl.toString(), () => {
+                    attemptOpen(`amzn://www.amazon.com/dp/${asin}`, () => {
+                        attemptOpen(`com.amazon.mobile.shopping://www.amazon.com/dp/${asin}`, () => {
+                            setStatus('跳转到网页版...', false);
+                            window.location.href = webUrl.toString();
+                        });
+                    });
+                });
+            } 
+            else if (platform === 'android') {
+                // Android方案
+                const intentUrl = generateAndroidIntent(asin, params);
+                
+                attemptOpen(intentUrl, () => {
+                    // 备用方案：尝试简单Scheme
+                    attemptOpen(`amzn://www.amazon.com/dp/${asin}`, () => {
                         // 最终回退：网页版
-                        setStatus('未检测到亚马逊App，正在跳转网页版...', false);
+                        const webUrl = new URL(`https://www.amazon.com/dp/${asin}`);
+                        Object.keys(params).forEach(key => {
+                            webUrl.searchParams.set(key, params[key]);
+                        });
+                        setStatus('跳转到网页版...', false);
                         window.location.href = webUrl.toString();
                     });
                 });
-            });
+            } 
+            else {
+                // 其他平台直接打开网页版
+                const webUrl = new URL(`https://www.amazon.com/dp/${asin}`);
+                Object.keys(params).forEach(key => {
+                    webUrl.searchParams.set(key, params[key]);
+                });
+                window.location.href = webUrl.toString();
+            }
         }
 
+        // 通用打开方法
         function attemptOpen(url, fallback) {
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
@@ -89,11 +135,9 @@
             setTimeout(() => {
                 document.body.removeChild(iframe);
                 
-                // 检查是否成功打开应用
                 if (document.hidden) {
                     setStatus('成功打开亚马逊App！', true);
                 } else {
-                    // 如果没有打开成功，执行备用方案
                     if (fallback && typeof fallback === 'function') {
                         fallback();
                     }
