@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打开亚马逊商品页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: #FF9900;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        button:hover {
+            background-color: #FF8C00;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #DFF2BF;
+            color: #4F8A10;
+        }
+        .error {
+            background-color: #FFBABA;
+            color: #D8000C;
+        }
+    </style>
+</head>
+<body>
+    <h1>亚马逊商品跳转</h1>
+    <p>点击下方按钮尝试打开亚马逊App中的商品页面</p>
+    
+    <button onclick="openAmazonProduct('B08LL1HRKW', {th: 1})">打开商品页面</button>
+    
+    <div id="status" class="status" style="display: none;"></div>
+    
+    <script>
+        function setStatus(message, isSuccess) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = isSuccess ? 'status success' : 'status error';
+            statusEl.style.display = 'block';
+        }
+
+        function openAmazonProduct(asin, params = {}) {
+            // 显示加载状态
+            setStatus('正在尝试打开亚马逊App...', true);
+            
+            // 构造Universal Link（保留重要参数）
+            const webUrl = new URL(`https://www.amazon.com/dp/${asin}`);
+            Object.keys(params).forEach(key => {
+                webUrl.searchParams.set(key, params[key]);
+            });
+            
+            // 第一次尝试：Universal Link
+            attemptOpen(webUrl.toString(), () => {
+                // 第二次尝试：URL Scheme
+                attemptOpen(`amzn://www.amazon.com/dp/${asin}`, () => {
+                    // 第三次尝试：备用URL Scheme
+                    attemptOpen(`com.amazon.mobile.shopping://www.amazon.com/dp/${asin}`, () => {
+                        // 最终回退：网页版
+                        setStatus('未检测到亚马逊App，正在跳转网页版...', false);
+                        window.location.href = webUrl.toString();
+                    });
+                });
+            });
+        }
+
+        function attemptOpen(url, fallback) {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+            
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+                
+                // 检查是否成功打开应用
+                if (document.hidden) {
+                    setStatus('成功打开亚马逊App！', true);
+                } else {
+                    // 如果没有打开成功，执行备用方案
+                    if (fallback && typeof fallback === 'function') {
+                        fallback();
+                    }
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
