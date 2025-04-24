@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Amazon App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>打开亚马逊</h2>
+  <button onclick="openAmazon()">打开 Amazon App</button>
+
+  <script>
+    function openAmazon() {
+      const appScheme = "com.amazon.mobile.shopping://"; // Amazon 的 URL Scheme（仅用于示意）
+      const webUrl = "https://www.amazon.com";
+
+      const start = Date.now();
+      // 创建一个 iframe 尝试打开 App
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = appScheme;
+      document.body.appendChild(iframe);
+
+      // 如果用户在一定时间内未跳转到 app，则跳转到官网
+      setTimeout(() => {
+        const end = Date.now();
+        // 如果时间间隔小于 2 秒，说明 app 没有响应
+        if (end - start < 2000) {
+          window.location.href = webUrl;
+        }
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
