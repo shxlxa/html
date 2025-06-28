@@ -1,6 +1,11 @@
 {
-    "buildName":"FTChatAI",
-    "buildVersion":"1.6.1",
-    "buildUpdateDescription":"version 1.6.1 coming",
-    "forceUpdateVersion":"1.0"
+  "key" : "Mkx0SUw2NGMyWEJneUl6dW9aZlB1OWNsVVBpN3ZQSGpZOXZoWjRhalZCN1JXdVozejRvMg==",
+  "url" : "https://yunwu.ai/v1/chat/completions",
+  "enable" : "1",
+  "models" : [
+    "gpt-3.5-turbo-0125",
+    "gpt-4o-mini",
+    "claude-sonnet-4-20250514"
+  ],
+  "name" : "FTChatAI"
 }
