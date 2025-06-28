@@ -1,0 +1,10 @@
+{
+  "key" : "Mkx0SUw2NGMyWEJneUl6dW9aZlB1OWNsVVBpN3ZQSGpZOXZoWjRhalZCN1JXdVozejRvMg==",
+  "url" : "https://yunwu.ai/v1/chat/completions",
+  "enable" : "1",
+  "models" : [
+    "gpt-3.5-turbo-0125",
+    "gpt-4o-mini"
+  ],
+  "name" : "FTChatAI"
+}
