@@ -1,7 +1,7 @@
 {
     "buildName":"FTChatAI",
-    "buildVersion":"1.7.7",
+    "buildVersion":"1.0.0",
     "buildUpdateDescription":"you can select model now",
-    "forceUpdateVersion":"1.7.7",
+    "forceUpdateVersion":"1.0.0",
     "enable": "0"
 }
