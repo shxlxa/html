@@ -1,0 +1,3711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>校内数学 VS 蒙小数学</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SimSun", sans-serif;
+      background: #f5f0f5;
+      display: flex;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 250px;
+      flex-shrink: 0;
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: #fdf6ff;
+      border-right: 1px solid #e0c8e8;
+      z-index: 100;
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      padding: 14px 16px 12px;
+      border-bottom: 2px solid #e8b4d8;
+      line-height: 1.5;
+    }
+
+    .toc-grade {
+      border-bottom: 1px solid #f0d8f0;
+    }
+
+    .toc-grade-link {
+      display: block;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+      text-decoration: none;
+      transition: all 0.15s;
+      background: #fdf6ff;
+    }
+
+    .toc-grade-link:hover { color: #c0392b; background: #f9eaf9; }
+    .toc-grade-link.active { color: #c0392b; background: #f3dff3; }
+
+    .toc-units {
+      list-style: none;
+      padding-bottom: 4px;
+    }
+
+    .toc-unit-link {
+      display: block;
+      padding: 3px 12px 3px 26px;
+      font-size: 11.5px;
+      color: #666;
+      text-decoration: none;
+      transition: all 0.15s;
+      line-height: 1.45;
+    }
+
+    .toc-unit-link:hover { color: #c0392b; background: #f9eaf9; }
+    .toc-unit-link.active { color: #c0392b; font-weight: 600; }
+
+    /* ===== Main content ===== */
+    .content {
+      margin-left: 250px;
+      padding: 28px 40px 80px;
+      flex: 1;
+      max-width: 1060px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 36px;
+      color: #222;
+      letter-spacing: 1px;
+    }
+
+    .grade-section {
+      margin-bottom: 64px;
+    }
+
+    .grade-title {
+      background: #f3e6f5;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 0;
+      border: 1px solid #d8c0dc;
+      border-bottom: none;
+      color: #333;
+      border-radius: 4px 4px 0 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #d8c0dc;
+      padding: 6px 9px;
+      vertical-align: middle;
+      line-height: 1.55;
+    }
+
+    thead tr th {
+      background: #e8b4d8;
+      font-weight: 600;
+      text-align: center;
+      color: #222;
+      font-size: 13px;
+    }
+
+    th:nth-child(1) { width: 96px; }
+    th:nth-child(2) { width: 104px; }
+    th:nth-child(3) { }
+    th:nth-child(4) { width: 240px; }
+
+    td.col1 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: #333;
+      background: #f5eef8;
+    }
+
+    td.col2 {
+      text-align: center;
+      font-size: 12.5px;
+      font-weight: normal;
+      color: #444;
+      background: #faf4fc;
+    }
+
+    td.col3, td.col4 {
+      text-align: center;
+      font-weight: normal;
+      color: #333;
+      font-size: 12.5px;
+    }
+
+    tbody tr:hover td {
+      background-color: #fef5ff !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar">
+  <div class="sidebar-title">校内数学 VS 蒙小数学</div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-1a">一年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-1a-0">我上学了</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-1">第一单元 生活中的数</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-2">第二单元 加减法</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-3">第三单元 整理与分类</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-4">第四单元 10以内数加与减</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-5">第五单元 有趣的立体图形</a></li>
+      <li><a class="toc-unit-link" href="#u-1a-6">第六单元 记录我的一天</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-1b">一年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-1b-1">第一单元 20以内与加法</a></li>
+      <li><a class="toc-unit-link" href="#u-1b-2">第二单元 图形大变身（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-1b-3">第三单元 20以内数与减法</a></li>
+      <li><a class="toc-unit-link" href="#u-1b-4">第四单元 100以内数的认识</a></li>
+      <li><a class="toc-unit-link" href="#u-1b-5">第五单元 100以内数加与减（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-1b-6">第六单元 有趣的平面图形（一）</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-2a">二年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-2a-1">第一单元 100以内数加与减（二）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-2">第二单元 测量（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-3">第三单元 数一数与乘法</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-4">第四单元 乘法口诀（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-zh1">综合实践·画校园路线图</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-5">第五单元 分一分与除一除</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-6">第六单元 图形的运动（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-7">第七单元 乘法口诀（二）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-8">第八单元 乘除法应用（一）</a></li>
+      <li><a class="toc-unit-link" href="#u-2a-zh2">综合实践·参加欢乐购物活动</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-2b">二年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-2b-1">第一单元 除法</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-2">第二单元 方向与位置</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-3">第三单元 生活中的大数</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-4">第四单元 测量</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-5">第五单元 加与减</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-6">第六单元 认识图形</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-7">第七单元 时、分、秒</a></li>
+      <li><a class="toc-unit-link" href="#u-2b-8">第八单元 调查与记录</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-3a">三年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-3a-1">第一单元 混合运算</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-2">第二单元 测量（二）</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-zh">综合实践 记录我们的校园</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-3">第三单元 大数加与减（二）</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-4">第四单元 我们生活的空间</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-5">第五单元 认识图形</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-sx">数学好玩</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-6">第六单元 乘除法应用题</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-7">第七单元 认识小数</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-8">第八单元 调查与记录</a></li>
+      <li><a class="toc-unit-link" href="#u-3a-zh2">综合实践·探索时间的秘密</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-3b">三年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-3b-1">第一单元 除法</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-2">第二单元 图形的运动</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-3">第三单元 乘法</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-4">第四单元 千克、克、吨</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-5">第五单元 面积</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-sx">数学好玩</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-6">第六单元 分数</a></li>
+      <li><a class="toc-unit-link" href="#u-3b-7">第七单元 数据的整理和表示</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-4a">四年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-4a-1">第一单元 认识更大的数</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-2">第二单元 线与角</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-3">第三单元 乘法</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-4">第四单元 运算律</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-5">第五单元 方向与位置</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-6">第六单元 除法</a></li>
+      <li><a class="toc-unit-link" href="#u-4a-7">第七单元 负数</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-4b">四年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-4b-1">第一单元 小数的意义和加减法</a></li>
+      <li><a class="toc-unit-link" href="#u-4b-2">第二单元 认识三角形和四边形</a></li>
+      <li><a class="toc-unit-link" href="#u-4b-3">第三单元 小数乘法</a></li>
+      <li><a class="toc-unit-link" href="#u-4b-4">第四单元 观察物体</a></li>
+      <li><a class="toc-unit-link" href="#u-4b-5">第五单元 认识方程</a></li>
+      <li><a class="toc-unit-link" href="#u-4b-6">第六单元 数据的表示和分析</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-5a">五年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-5a-1">第一单元 小数除法</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-2">第二单元 轴对称和平移</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-3">第三单元 倍数与因数</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-4">第四单元 多边形面积</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-5">第五单元 分数的意义</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-6">第六单元 组合图形的面积</a></li>
+      <li><a class="toc-unit-link" href="#u-5a-7">第七单元 可能性</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-5b">五年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-5b-1">第一单元 分数加减法</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-2">第二单元 长方体</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-3">第三单元 分数乘法</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-4">第四单元 长方体（二）</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-5">第五单元 分数除法</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-6">第六单元 确定位置</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-7">第七单元 用方程解决问题</a></li>
+      <li><a class="toc-unit-link" href="#u-5b-8">第八单元 数据的表示和分析</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-6a">六年级上册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-6a-1">第一单元 圆</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-2">第二单元 分数混合运算</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-3">第三单元 观察物体</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-4">第四单元 百分数</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-5">第五单元 数据处理</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-6">第六单元 比的认识</a></li>
+      <li><a class="toc-unit-link" href="#u-6a-7">第七单元 百分数的应用</a></li>
+    </ul>
+  </div>
+
+  <div class="toc-grade">
+    <a class="toc-grade-link" href="#grade-6b">六年级下册</a>
+    <ul class="toc-units">
+      <li><a class="toc-unit-link" href="#u-6b-1">第一单元 圆柱与圆锥</a></li>
+      <li><a class="toc-unit-link" href="#u-6b-2">第二单元 比例</a></li>
+      <li><a class="toc-unit-link" href="#u-6b-3">第三单元 图形的运动</a></li>
+      <li><a class="toc-unit-link" href="#u-6b-4">第四单元 正比例与反比例</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="content">
+  <h1 class="page-title">校内数学 VS 蒙小数学</h1>
+
+  <!-- ==================== 一年级上册 ==================== -->
+  <section class="grade-section" id="grade-1a">
+    <div class="grade-title">一年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 我上学了 -->
+        <tr id="u-1a-0">
+          <td rowspan="7">我上学了</td>
+          <td rowspan="2">可爱的校园</td>
+          <td>十以内数与量的对应</td>
+          <td>数棒与数卡</td>
+        </tr>
+
+        <tr>
+          <td>基本几何形状的认识</td>
+          <td>几何图框与卡片、形状和真实物品配对卡</td>
+        </tr>
+
+        <tr>
+          <td>认识新同学</td>
+          <td>十以内数与量的对应</td>
+          <td>数棒与数卡</td>
+        </tr>
+
+        <tr>
+          <td>我们的操场</td>
+          <td>长短、高矮、远近</td>
+          <td>插座圆柱体、红棒、棕色梯、粉红塔</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">好玩的游戏</td>
+          <td>十以内数与量的对应</td>
+          <td>数棒与数卡</td>
+        </tr>
+
+        <tr>
+          <td>基本几何形状的认识</td>
+          <td>几何图框与卡片、形状和真实物品配对卡</td>
+        </tr>
+
+        <tr>
+          <td>收获的季节</td>
+          <td>大小、轻重、比较级、最高级</td>
+          <td>粉红塔、重量板等</td>
+        </tr>
+
+        <!-- 第一单元 生活中的数 -->
+        <tr id="u-1a-1">
+          <td rowspan="11">第一单元<br>生活中的数</td>
+          <td rowspan="2">美丽的乡村</td>
+          <td>1-10各数的初步认识</td>
+          <td>纺锤棒箱、数字与筹码、记忆游戏</td>
+        </tr>
+
+        <tr>
+          <td>排队问题：共几个、排第几</td>
+          <td>融合：钉板</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">玩具</td>
+          <td>1-5各数的认识与书写</td>
+          <td>砂纸数字、纺锤棒箱、记忆游戏</td>
+        </tr>
+
+        <tr>
+          <td>画图表示数量</td>
+          <td>融合：数与量对应的作业纸</td>
+        </tr>
+
+        <tr>
+          <td>小猫钓鱼</td>
+          <td>0的认识与书写</td>
+          <td>纺锤棒箱和0的游戏、数字与筹码</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">文具</td>
+          <td>6-9各数的认识与书写</td>
+          <td>砂纸数字、纺锤棒箱、记忆游戏</td>
+        </tr>
+
+        <tr>
+          <td>画图表示数量</td>
+          <td>融合：数与量对应的作业纸</td>
+        </tr>
+
+        <tr>
+          <td>数鸡蛋</td>
+          <td>10的认识与书写</td>
+          <td>十进制系统量和卡的对应、数棒与数卡</td>
+        </tr>
+
+        <tr>
+          <td>快乐的午餐</td>
+          <td>用一一对应的方法比较大小</td>
+          <td>融合：作业纸</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">动物乐园</td>
+          <td>"="、"&lt;"、"&gt;"的认识与书写</td>
+          <td>融合：自制教具</td>
+        </tr>
+
+        <tr>
+          <td>多、少</td>
+          <td>融合：钉板</td>
+        </tr>
+
+        <!-- 第二单元 -->
+        <tr id="u-1a-2">
+          <td rowspan="2">第二单元</td>
+          <td rowspan="2">一共有多少</td>
+          <td>认识加法</td>
+          <td>金色珠子加法、邮票游戏加法</td>
+        </tr>
+
+        <tr>
+          <td>看图写算式</td>
+          <td>数棒——10的分解与组合</td>
+        </tr>
+
+        <!-- 5以内的减法 -->
+        <tr>
+          <td rowspan="4">5以内的<br>减法</td>
+          <td rowspan="2">还剩下多少</td>
+          <td>认识减法</td>
+          <td>金色珠子减法、邮票游戏减法</td>
+        </tr>
+
+        <tr>
+          <td>看图写算式</td>
+          <td>数棒——10的分解与组合</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">可爱的小猫</td>
+          <td>得数或算式中有0的加减法</td>
+          <td rowspan="2">数棒——10的分解与组合；纺锤棒箱、邮票游戏减法</td>
+        </tr>
+
+        <tr>
+          <td>看图写算式</td>
+        </tr>
+
+        <!-- 综合实践 -->
+        <tr>
+          <td rowspan="3">综合实践·<br>介绍我的教室</td>
+          <td>观察教室</td>
+          <td rowspan="3">上下、前后、左右</td>
+          <td rowspan="3">语言区方位介词的教具</td>
+        </tr>
+
+        <tr>
+          <td>介绍教室</td>
+        </tr>
+
+        <tr>
+          <td>校园开放日</td>
+        </tr>
+
+        <!-- 第三单元 -->
+        <tr id="u-1a-3">
+          <td rowspan="2">第三单元<br>整理与分类</td>
+          <td>整理房间</td>
+          <td rowspan="2">按照不同的标准分类</td>
+          <td>实体感官</td>
+        </tr>
+
+        <tr>
+          <td>一起来分类</td>
+          <td>团体游戏</td>
+        </tr>
+
+        <!-- 第四单元 -->
+        <tr id="u-1a-4">
+          <td rowspan="10">第四单元<br>10以内数<br>加与减</td>
+          <td>猜数游戏</td>
+          <td>6的加减法</td>
+          <td rowspan="4">加法长条板和减法长条板；融合：作业纸（看图列算式）画图解决问题/应用题</td>
+        </tr>
+
+        <tr>
+          <td>背土豆</td>
+          <td>7的加减法</td>
+        </tr>
+
+        <tr>
+          <td>课间</td>
+          <td>8、9的加减法</td>
+        </tr>
+
+        <tr>
+          <td>小鸡吃食</td>
+          <td>10的加减法</td>
+        </tr>
+
+        <tr>
+          <td>乘车</td>
+          <td>连加、连减和加减混合运算</td>
+          <td>加法蛇、减法蛇</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">挖红薯</td>
+          <td>体会相等关系</td>
+          <td>等式</td>
+        </tr>
+
+        <tr>
+          <td>移多补少感官印象</td>
+          <td>融合：钉板</td>
+        </tr>
+
+        <tr>
+          <td>可爱的企鹅</td>
+          <td>解决问题</td>
+          <td>融合：应用题卡</td>
+        </tr>
+
+        <tr>
+          <td>做个加法表</td>
+          <td>复习10以内的加法</td>
+          <td>记忆数学群组</td>
+        </tr>
+
+        <tr>
+          <td>做个减法表</td>
+          <td>复习10以内的减法</td>
+          <td>记忆数学群组</td>
+        </tr>
+
+        <!-- 第五单元 -->
+        <tr id="u-1a-5">
+          <td rowspan="3">第五单元<br>有趣的立体图形</td>
+          <td>认识图形</td>
+          <td>认识长方体、正方体、圆柱、球</td>
+          <td>立体几何组、配对卡、分类卡</td>
+        </tr>
+
+        <tr>
+          <td>我说你做</td>
+          <td>认识立体图形的特征</td>
+          <td rowspan="2">棕色梯、粉红塔、红棒、圆柱体、立体几何组、投影卡</td>
+        </tr>
+
+        <tr>
+          <td>怎样搭得高</td>
+          <td>认识立体图形的特征</td>
+        </tr>
+
+        <!-- 第六单元 -->
+        <tr id="u-1a-6">
+          <td rowspan="3">第六单元<br>记录我的一天</td>
+          <td>淘气的一天</td>
+          <td>认识钟表、认读整时和半时</td>
+          <td rowspan="3">时钟教具、三段卡、记录一天活动卡<br>融合：讲义</td>
+        </tr>
+
+        <tr>
+          <td>记录我的一天</td>
+          <td>学习整时和半时的表示方法</td>
+        </tr>
+
+        <tr>
+          <td>分享我的一天</td>
+          <td>展示成果</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 一年级下册 ==================== -->
+  <section class="grade-section" id="grade-1b">
+    <div class="grade-title">一年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 -->
+        <tr id="u-1b-1">
+          <td rowspan="10">第一单元<br>20以内数与加法</td>
+          <td rowspan="2">古人计数（一）</td>
+          <td rowspan="2">20以内数的认识</td>
+          <td>十几珠和塞根板一、金色珠子</td>
+        </tr>
+
+        <tr>
+          <td>融合：自己画一画</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">古人计数（二）</td>
+          <td>20以内数的认识（进位）</td>
+          <td>十几珠和塞根板一、金色珠子</td>
+        </tr>
+
+        <tr>
+          <td>比较大小、数序</td>
+          <td>融合：作业纸</td>
+        </tr>
+
+        <tr>
+          <td>搭积木</td>
+          <td>20以内数的不进位加法和不退位减法</td>
+          <td>加法长条板、减法长条板、金色珠子、邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">开心农场</td>
+          <td>20以内数的进位加法</td>
+          <td>十几珠和塞根板一、金色珠子、邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>凑十法</td>
+          <td>加法蛇</td>
+        </tr>
+
+        <tr>
+          <td>一起做家务</td>
+          <td rowspan="2">20以内数的进位加法</td>
+          <td rowspan="2">加法长条板、凑十法画图、算珠小立架</td>
+        </tr>
+
+        <tr>
+          <td>小兔子安家</td>
+        </tr>
+
+        <tr>
+          <td>做个加法表</td>
+          <td>加法表</td>
+          <td>加法记忆群组</td>
+        </tr>
+
+        <!-- 第二单元 -->
+        <tr id="u-1b-2">
+          <td rowspan="5">第二单元<br>图形大变身（一）</td>
+          <td rowspan="2">做一做</td>
+          <td>借助主体图形印出或描出平面图形</td>
+          <td rowspan="2">立体几何、投影板、几何嵌板、几何图框、相对规则形状的物品</td>
+        </tr>
+
+        <tr>
+          <td>设计图形</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">找一找</td>
+          <td>根据平面图形、寻找相关的立体图形</td>
+          <td>立体几何、投影板</td>
+        </tr>
+
+        <tr>
+          <td>相对规则形状的物品与投影的关系</td>
+          <td>融合：讲义</td>
+        </tr>
+
+        <tr>
+          <td>影子剧场</td>
+          <td>借助影子体会面和体的关系</td>
+          <td>立体几何、投影板</td>
+        </tr>
+
+        <!-- 第三单元 -->
+        <tr id="u-1b-3">
+          <td rowspan="7">第三单元<br>20以内数与减法</td>
+          <td>买文具</td>
+          <td rowspan="3">20以内的退位减法：破十法、平十法、加减互逆</td>
+          <td rowspan="3">金色珠子、邮票游戏、记忆群组、减法蛇</td>
+        </tr>
+
+        <tr>
+          <td>捉迷藏</td>
+        </tr>
+
+        <tr>
+          <td>凑数游戏</td>
+        </tr>
+
+        <tr>
+          <td>开会啦</td>
+          <td rowspan="3">"比较两个数量相差多少"的减法：解决问题</td>
+          <td rowspan="3">融合：解决问题的题卡</td>
+        </tr>
+
+        <tr>
+          <td>跳伞表演</td>
+        </tr>
+
+        <tr>
+          <td>美丽的田园</td>
+        </tr>
+
+        <tr>
+          <td>做个减法表</td>
+          <td>20以内减法算式中的规律</td>
+          <td>减法记忆群组</td>
+        </tr>
+
+        <!-- 第四单元 -->
+        <tr id="u-1b-4">
+          <td rowspan="7">第四单元<br>100以内数<br>的认识</td>
+          <td>旁边的数</td>
+          <td>积累认识100以内数的经验；两个两个地数、五个五个地数</td>
+          <td>塞根板二、跳数、个十百千珠和卡</td>
+        </tr>
+
+        <tr>
+          <td>数一数</td>
+          <td>100以内数的数法/理解数位</td>
+          <td>个十百千珠和卡、进位的游戏</td>
+        </tr>
+
+        <tr>
+          <td>数豆子</td>
+          <td>100以内数的读、写</td>
+          <td>金珠和卡、邮票、算珠小立架</td>
+        </tr>
+
+        <tr>
+          <td>谁的红果多</td>
+          <td>比较数的大小、理解位值</td>
+          <td>金珠、算珠小立架</td>
+        </tr>
+
+        <tr>
+          <td>小小养殖场</td>
+          <td>数的相对大小关系；多一些、少一些、多得多、少得多；排序、大小关系的传递性</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">做个百数表</td>
+          <td rowspan="2">100以内数的顺序、散序、表内规律</td>
+          <td>百格板</td>
+        </tr>
+
+        <tr>
+          <td>融合：题卡</td>
+        </tr>
+
+        <!-- 填数游戏 -->
+        <tr>
+          <td>填数游戏</td>
+          <td>填数游戏</td>
+          <td>推理与逻辑</td>
+          <td>融合：数方</td>
+        </tr>
+
+        <!-- 第五单元 -->
+        <tr id="u-1b-5">
+          <td rowspan="7">第五单元<br>100以内数<br>加与减（一）</td>
+          <td>小兔子请客</td>
+          <td>整十数加减整十数；加减算式各部分名称</td>
+          <td>金色珠子、算珠立架、乘法算珠（50是5个十、6个10是60等）</td>
+        </tr>
+
+        <tr>
+          <td>采松果</td>
+          <td>两位数加减一位数、整十数</td>
+          <td rowspan="3">金色珠子、算珠立架</td>
+        </tr>
+
+        <tr>
+          <td>青蛙吃虫子</td>
+          <td>两位数加两位数的横式计算</td>
+        </tr>
+
+        <tr>
+          <td>算一算</td>
+          <td>两位数加减两位数的竖式计算</td>
+        </tr>
+
+        <tr>
+          <td>有趣的算式</td>
+          <td>探索规律（例：12+21=33）</td>
+          <td>金色珠子</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">回收废品</td>
+          <td>解决问题：一个数比另一个数多（少）多少</td>
+          <td rowspan="2">融合：画图法、题卡</td>
+        </tr>
+
+        <tr>
+          <td>画图解决问题</td>
+        </tr>
+
+        <!-- 第六单元 -->
+        <tr id="u-1b-6">
+          <td rowspan="5">第六单元<br>有趣的平面<br>图形（一）</td>
+          <td>认识图形</td>
+          <td>直观认识长方形、正方形、三角形和圆</td>
+          <td>几何图框</td>
+        </tr>
+
+        <tr>
+          <td>动手做（一）</td>
+          <td>折纸拼图活动</td>
+          <td>渐层几何形状</td>
+        </tr>
+
+        <tr>
+          <td>动手做（二）</td>
+          <td>认识七巧板</td>
+          <td>嵌板设计、建构三角形</td>
+        </tr>
+
+        <tr>
+          <td>动手做（三）</td>
+          <td>欣赏与设计</td>
+          <td>几何嵌板</td>
+        </tr>
+
+        <tr>
+          <td>拼图大挑战</td>
+          <td>借助平面图形的特征解决实际问题</td>
+          <td>建构三角形</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 二年级上册 ==================== -->
+  <section class="grade-section" id="grade-2a">
+    <div class="grade-title">二年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 -->
+        <tr id="u-2a-1">
+          <td rowspan="6">第一单元<br>100以内数<br>加与减（二）</td>
+          <td>图书角</td>
+          <td>两位数加一位数、两位数加两位数的横式计算</td>
+          <td>金珠、邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>摘苹果</td>
+          <td>两位数加一位数、两位数加两位数的竖式计算</td>
+          <td>算珠立架</td>
+        </tr>
+
+        <tr>
+          <td>借阅图书</td>
+          <td>两位数减一位数、两位数减两位数的横式计算</td>
+          <td>金珠、邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>收玉米</td>
+          <td>两位数减一位数、两位数减两位数的竖式计算</td>
+          <td>算珠立架</td>
+        </tr>
+
+        <tr>
+          <td>跳绳</td>
+          <td>多多少、少多少/画图解决问题</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <tr>
+          <td>套圈游戏</td>
+          <td>加减法各部分之间的关系</td>
+          <td>融合：加法算式之谜、减法算式之谜</td>
+        </tr>
+
+        <!-- 第二单元 -->
+        <tr id="u-2a-2">
+          <td rowspan="3">第二单元<br>测量（一）</td>
+          <td>教室有多长</td>
+          <td>自选长度单位的测量；测量方法</td>
+          <td>长度测量示范1、2、测量的故事</td>
+        </tr>
+
+        <tr>
+          <td>课桌有多长</td>
+          <td>"厘米"的认识</td>
+          <td rowspan="2">长度测量示范1、长度测量示范3</td>
+        </tr>
+
+        <tr>
+          <td>一米有多长</td>
+          <td>"米"的认识</td>
+        </tr>
+
+        <!-- 第三单元 -->
+        <tr id="u-2a-3">
+          <td rowspan="5">第三单元<br>数一数与乘法</td>
+          <td>小小清点员</td>
+          <td>积累同数连加的活动经验；6个4和4个6是一样的</td>
+          <td rowspan="2">金色珠子乘法、乘法算珠</td>
+        </tr>
+
+        <tr>
+          <td>儿童乐园</td>
+          <td>初步认识乘法的意义；介绍一份数和份数</td>
+        </tr>
+
+        <tr>
+          <td>点子图中的乘法</td>
+          <td>乘法的直观模型；3个6和6个3的形状一样</td>
+          <td>乘法算珠、个位乘法板、钉板；融合：画出乘法答案</td>
+        </tr>
+
+        <tr>
+          <td>动物聚会</td>
+          <td>乘法的应用</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <tr>
+          <td>快乐的动物</td>
+          <td>"倍"的认识；一个数的另一个是几倍；一个数的几倍是多少</td>
+          <td>钉板；融合：画出倍数的关系</td>
+        </tr>
+
+        <!-- 第四单元 -->
+        <tr id="u-2a-4">
+          <td rowspan="4">第四单元<br>乘法口诀（一）</td>
+          <td>文物中的乘法口诀</td>
+          <td>5的乘法口诀</td>
+          <td rowspan="3">乘法记忆群组</td>
+        </tr>
+
+        <tr>
+          <td>做家务</td>
+          <td>2的乘法口诀</td>
+        </tr>
+
+        <tr>
+          <td>需要几个轮子</td>
+          <td>3、4的乘法口诀</td>
+        </tr>
+
+        <tr>
+          <td>回家路上</td>
+          <td>解决问题</td>
+          <td>融合：画出乘法答案/题卡</td>
+        </tr>
+
+        <!-- 综合实践·画校园路线图 -->
+        <tr id="u-2a-zh1">
+          <td rowspan="3">综合实践·<br>画校园路线图</td>
+          <td>认识东、南、西、北</td>
+          <td>理解活动任务、认识东、南、西、北</td>
+          <td rowspan="3">融合：项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>画校园路线图</td>
+          <td>体会位置、方向的相对性</td>
+        </tr>
+
+        <tr>
+          <td>路线图展示会</td>
+          <td>展示成果、反思评价</td>
+        </tr>
+
+        <!-- 第五单元 -->
+        <tr id="u-2a-5">
+          <td rowspan="6">第五单元<br>分一分与<br>除一除</td>
+          <td>分糖游戏</td>
+          <td>小数目物品平均分</td>
+          <td>金珠子</td>
+        </tr>
+
+        <tr>
+          <td>分水果</td>
+          <td>平均分的两种现实原型</td>
+          <td>邮票：平均分和包含除</td>
+        </tr>
+
+        <tr>
+          <td>分糖果</td>
+          <td>大数目物品平均分；两个两个分、五个五个分</td>
+          <td>个位除法板</td>
+        </tr>
+
+        <tr>
+          <td>分香蕉</td>
+          <td>认识除法、理解除法的意义；被除数、除数和商</td>
+          <td>个位除法板</td>
+        </tr>
+
+        <tr>
+          <td>小熊开店</td>
+          <td>用乘法口诀求商</td>
+          <td>乘法算珠和个位除法板</td>
+        </tr>
+
+        <tr>
+          <td>花园</td>
+          <td>解决与"倍"有关的实际问题</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <!-- 第六单元 -->
+        <tr id="u-2a-6">
+          <td rowspan="2">第六单元<br>图形的运动（一）</td>
+          <td>折一折、做一做</td>
+          <td>初步感知轴对称现象</td>
+          <td>剪纸</td>
+        </tr>
+
+        <tr>
+          <td>好玩的华容道</td>
+          <td>初步感知平移和旋转现象</td>
+          <td>融合：平移题卡；制作陀螺</td>
+        </tr>
+
+        <!-- 第七单元 -->
+        <tr id="u-2a-7">
+          <td rowspan="4">第七单元<br>乘法口诀（二）</td>
+          <td>有多少张贴画</td>
+          <td>6的乘法口诀</td>
+          <td rowspan="4">乘法记忆群组<br>融合：题卡</td>
+        </tr>
+
+        <tr>
+          <td>《西游记》中的乘法口诀</td>
+          <td>7、8、9的乘法口诀</td>
+        </tr>
+
+        <tr>
+          <td>有多少无人机</td>
+          <td>解决问题</td>
+        </tr>
+
+        <tr>
+          <td>做个乘法表</td>
+          <td>探索乘法的规律</td>
+        </tr>
+
+        <!-- 第八单元 -->
+        <tr id="u-2a-8">
+          <td rowspan="2">第八单元<br>乘除法应用（一）</td>
+          <td>长颈鹿与小鸟</td>
+          <td>用乘法口诀试商</td>
+          <td>邮票游戏、个位除法板；融合：画图法；例：括号里最大能填几 8×（ ）&lt; 70</td>
+        </tr>
+
+        <tr>
+          <td>农家小院</td>
+          <td>乘除法的综合应用；借的问题</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <!-- 综合实践·购物 -->
+        <tr id="u-2a-zh2">
+          <td rowspan="4">综合实践·<br>参加欢乐<br>购物活动</td>
+          <td>筹备购物活动</td>
+          <td>理解活动任务、认识人民币、换算</td>
+          <td rowspan="4">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>模拟购物活动</td>
+          <td>小组模拟购物，积累使用人民币的经验</td>
+        </tr>
+
+        <tr>
+          <td>开展购物活动</td>
+          <td>在真实的情景中合理使用人民币</td>
+        </tr>
+
+        <tr>
+          <td>分享购物经验</td>
+          <td>复盘并讲述购物过程、改进与自我评价</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 二年级下册 ==================== -->
+  <section class="grade-section" id="grade-2b">
+    <div class="grade-title">二年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 除法 -->
+        <tr id="u-2b-1">
+          <td rowspan="8">第一单元<br>除法</td>
+          <td rowspan="2">分苹果</td>
+          <td>除法竖式</td>
+          <td rowspan="2">试管除法</td>
+        </tr>
+
+        <tr>
+          <td>提出除法问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">搭一搭（一）</td>
+          <td>认识余数</td>
+          <td rowspan="2">个位除法板、试管除法</td>
+        </tr>
+
+        <tr>
+          <td>余数和除数的关系</td>
+        </tr>
+
+        <tr>
+          <td>搭一搭（二）</td>
+          <td>有余数除法竖式</td>
+          <td>试管除法</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分草莓</td>
+          <td>试商</td>
+          <td rowspan="2">个位除法板、试管除</td>
+        </tr>
+
+        <tr>
+          <td>余数和除数的关系</td>
+        </tr>
+
+        <tr>
+          <td>租船</td>
+          <td>有余数除法的应用；最多、至少、设计或选择合理方案</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <!-- 第二单元 -->
+        <tr id="u-2b-2">
+          <td rowspan="2">第二单元<br>方向与位置</td>
+          <td>东南西北</td>
+          <td>辨认东、南、西、北</td>
+          <td rowspan="2">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>辨认方向</td>
+          <td>知道东南、东北、西南、西北</td>
+        </tr>
+
+        <!-- 第三单元 -->
+        <tr id="u-2b-3">
+          <td rowspan="7">第三单元<br>生活中的大数</td>
+          <td>数一数（一）</td>
+          <td>认识并感受"千"</td>
+          <td rowspan="4">百万箱、大算珠立架；融合：大数的读写/算盘</td>
+        </tr>
+
+        <tr>
+          <td>数一数（二）</td>
+          <td>认识"万"</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">拨一拨</td>
+          <td>认识数位顺序、万以内数的读写</td>
+        </tr>
+
+        <tr>
+          <td>认识算盘</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">比一比</td>
+          <td>万以内数的大小比较</td>
+          <td rowspan="2">算珠大立架<br>融合：数轴的前期准备</td>
+        </tr>
+
+        <tr>
+          <td>数线上标数</td>
+        </tr>
+
+        <tr>
+          <td>有多少个字</td>
+          <td>（估计）</td>
+          <td>融合：题卡、大数、小数、按单位</td>
+        </tr>
+
+        <!-- 第四单元 -->
+        <tr id="u-2b-4">
+          <td rowspan="3">第四单元<br>测量</td>
+          <td>铅笔有多长</td>
+          <td>分米、毫米的认识</td>
+          <td rowspan="3">测量的示范2 换算单位<br>黄色小数板<br>融合：题卡</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">1千米有多长</td>
+          <td>千米的认识</td>
+        </tr>
+
+        <tr>
+          <td>给物品长度填上合适的单位</td>
+        </tr>
+
+        <!-- 第五单元 -->
+        <tr id="u-2b-5">
+          <td rowspan="8">第五单元<br>加与减</td>
+          <td>买电器</td>
+          <td>口算加减法（整十整百）</td>
+          <td rowspan="7">金色珠子、邮票、小算珠立架</td>
+        </tr>
+
+        <tr>
+          <td>回收废电池</td>
+          <td>三位数笔算加法</td>
+        </tr>
+
+        <tr>
+          <td>十年的变化</td>
+          <td>三位数笔算加法</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">小小图书馆</td>
+          <td>三位数笔算减法</td>
+        </tr>
+
+        <tr>
+          <td>比较两个算式的大小</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">小蝌蚪成长</td>
+          <td>三位数笔算减法</td>
+        </tr>
+
+        <tr>
+          <td>估算</td>
+        </tr>
+
+        <tr>
+          <td>算得对吗</td>
+          <td>验算</td>
+          <td>融合：题卡</td>
+        </tr>
+
+        <!-- 第六单元 -->
+        <tr id="u-2b-6">
+          <td rowspan="7">第六单元<br>认识图形</td>
+          <td rowspan="2">认识角</td>
+          <td>初步认识角、各部位名称、记作、读作</td>
+          <td rowspan="3">几何木棒、建构三角形盒</td>
+        </tr>
+
+        <tr>
+          <td>比较角的大小</td>
+        </tr>
+
+        <tr>
+          <td>认识直角</td>
+          <td>认识直角、锐角、钝角</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">长方形与正方形</td>
+          <td>长方形与正方形的特征</td>
+          <td rowspan="3">几何图橱、几何木棒、几何定义小书</td>
+        </tr>
+
+        <tr>
+          <td>形状的个数，长方形里最大的正方形</td>
+        </tr>
+
+        <tr>
+          <td>平行四边形</td>
+          <td>直观认识平行四边形</td>
+        </tr>
+
+        <tr>
+          <td>欣赏与设计</td>
+          <td>—</td>
+          <td>建构三角形盒、金属嵌板、渐层几何形状</td>
+        </tr>
+
+        <!-- 第七单元 -->
+        <tr id="u-2b-7">
+          <td rowspan="3">第七单元<br>时、分、秒</td>
+          <td>奥运开幕</td>
+          <td>认识分：1时=60分；认识写</td>
+          <td rowspan="3">时钟</td>
+        </tr>
+
+        <tr>
+          <td>1分有多长</td>
+          <td>认识秒</td>
+        </tr>
+
+        <tr>
+          <td>淘气的作息时间</td>
+          <td>经过时间</td>
+        </tr>
+
+        <!-- 综合实践 数学好玩 -->
+        <tr>
+          <td>综合实践</td>
+          <td>数学好玩</td>
+          <td>上学时间</td>
+          <td>项目式学习</td>
+        </tr>
+
+        <!-- 第八单元 -->
+        <tr id="u-2b-8">
+          <td rowspan="2">第八单元<br>调查与记录</td>
+          <td>评选吉祥物</td>
+          <td>调查方法、记录调查数据</td>
+          <td rowspan="2">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>最喜欢的水果</td>
+          <td>记录调查数据</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 三年级上册 ==================== -->
+  <section class="grade-section" id="grade-3a">
+    <div class="grade-title">三年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 混合运算 -->
+        <tr id="u-3a-1">
+          <td rowspan="6">第一单元<br>混合运算</td>
+          <td rowspan="2">小熊购物</td>
+          <td>乘加、乘减混合运算及其应用</td>
+          <td rowspan="6">数字卡片、乘法算珠</td>
+        </tr>
+
+        <tr>
+          <td>画图理解、抽象算式、解释结果实际意义</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">买文具</td>
+          <td>除加、除减混合运算及其应用</td>
+        </tr>
+
+        <tr>
+          <td>画图理解、抽象算式、解释结果实际意义</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">过河</td>
+          <td>带有小括号的两步混合运算及其应用</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <!-- 第二单元 测量 -->
+        <tr id="u-3a-2">
+          <td rowspan="5">第二单元<br>测量（二）</td>
+          <td rowspan="2">铅笔有多长</td>
+          <td>分米、毫米的认识</td>
+          <td rowspan="3">黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td>填合适的单位、单位换算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">1千米有多长</td>
+          <td>千米的认识</td>
+        </tr>
+
+        <tr>
+          <td>单位换算</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>旗杆有多高</td>
+          <td>解决现实问题</td>
+          <td></td>
+        </tr>
+
+        <!-- 综合实践 -->
+        <tr id="u-3a-zh">
+          <td rowspan="6">综合实践<br>记录我们<br>的校园</td>
+          <td>美丽的校园</td>
+          <td>理解活动任务</td>
+          <td>项目式学习</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">校园里的八个方向</td>
+          <td>用八个方向描述物体位置</td>
+          <td rowspan="3">方向板</td>
+        </tr>
+
+        <tr>
+          <td>建立图中方向和实际物体的相对位置</td>
+        </tr>
+
+        <tr>
+          <td>自我表达、分享自己的观点</td>
+        </tr>
+
+        <tr>
+          <td>有趣的"几点钟方向"</td>
+          <td>用"几点钟方向"描述物体位置</td>
+          <td>时钟</td>
+        </tr>
+
+        <tr>
+          <td>介绍美丽的校园</td>
+          <td>展示成果、反思改进与自我评价</td>
+          <td>自我表达</td>
+        </tr>
+
+        <!-- 第三单元 大数加与减 -->
+        <tr id="u-3a-3">
+          <td rowspan="12">第三单元<br>大数加与减（二）</td>
+          <td rowspan="3">捐书</td>
+          <td>三位数连加算理、算法（竖式、口算、代偿）</td>
+          <td rowspan="3">数卡</td>
+        </tr>
+
+        <tr>
+          <td>运算顺序</td>
+        </tr>
+
+        <tr>
+          <td>估算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="5">小小养殖场</td>
+          <td>解决实际问题</td>
+          <td rowspan="5">数卡、金色珠子</td>
+        </tr>
+
+        <tr>
+          <td>三位数连减运算意义</td>
+        </tr>
+
+        <tr>
+          <td>正确使用小括号</td>
+        </tr>
+
+        <tr>
+          <td>两种算法和验算</td>
+        </tr>
+
+        <tr>
+          <td>三位数加减混合运算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">节余多少钱</td>
+          <td>面直观图</td>
+          <td rowspan="2">融合：画图（几何直观、数形结合）；数卡</td>
+        </tr>
+
+        <tr>
+          <td>两种方法</td>
+        </tr>
+
+        <tr>
+          <td>身高的增长</td>
+          <td>解决起点非0的实际问题</td>
+          <td>融合：画图、找关键信息</td>
+        </tr>
+
+        <tr>
+          <td>里程表</td>
+          <td>解决起点为0的实际问题</td>
+          <td></td>
+        </tr>
+
+        <!-- 第四单元 我们生活的空间 -->
+        <tr id="u-3a-4">
+          <td rowspan="4">第四单元<br>我们生活<br>的空间</td>
+          <td>看一看（一）</td>
+          <td>从不同位置观察一个或两个物体</td>
+          <td rowspan="4">准备真实小物件（语言区教具）</td>
+        </tr>
+
+        <tr>
+          <td>看一看（二）</td>
+          <td>从不同位置观察一组场景</td>
+        </tr>
+
+        <tr>
+          <td>看一看（三）</td>
+          <td>按一定顺序观察一组场景</td>
+        </tr>
+
+        <tr>
+          <td>看一看（四）</td>
+          <td>从相对的位置观察一组场景</td>
+        </tr>
+
+        <!-- 第五单元 认识图形 -->
+        <tr id="u-3a-5">
+          <td rowspan="8">第五单元<br>认识图形</td>
+          <td rowspan="3">认识角</td>
+          <td>从实际物体抽象出角</td>
+          <td rowspan="3">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>角的大小和"开口"有关</td>
+        </tr>
+
+        <tr>
+          <td>图形中的角</td>
+        </tr>
+
+        <tr>
+          <td>比一比</td>
+          <td>角的大小比较</td>
+          <td rowspan="4">几何木棒、建构三角形盒</td>
+        </tr>
+
+        <tr>
+          <td>认识直角</td>
+          <td>认识直角、锐角、钝角</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">长方形与正方形</td>
+          <td>长方形和正方形的特征</td>
+        </tr>
+
+        <tr>
+          <td>多少个长方形</td>
+        </tr>
+
+        <tr>
+          <td colspan="2">欣赏与设计</td>
+          <td>几何图橱、金属嵌板等</td>
+        </tr>
+
+        <!-- 数学好玩 -->
+        <tr id="u-3a-sx">
+          <td>数学好玩</td>
+          <td colspan="2">搭配中的问题</td>
+          <td>排列组合自制教具</td>
+        </tr>
+
+        <!-- 第六单元 乘除法应用题 -->
+        <tr id="u-3a-6">
+          <td rowspan="7">第六单元<br>乘除法应用题</td>
+          <td rowspan="2">包饺子</td>
+          <td>整十、整百数乘一位数（算理、口算）</td>
+          <td rowspan="2">金珠子</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题（两步乘法）</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">需要多少钱</td>
+          <td>两位数乘一位数（算理、多种算法）</td>
+          <td rowspan="2">算珠立架、平算珠架、银行游戏</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题（两步算式）</td>
+        </tr>
+
+        <tr>
+          <td>丰收了</td>
+          <td>整十、整百数除以一位数（算理、口算、算法）</td>
+          <td>金色珠子</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">植树</td>
+          <td>两位数除以一位数</td>
+          <td rowspan="2">金色珠子、试管除法</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题（两步算式）</td>
+        </tr>
+
+        <!-- 第七单元 认识小数 -->
+        <tr id="u-3a-7">
+          <td rowspan="6">第七单元<br>认识小数</td>
+          <td>水果店</td>
+          <td>借助元、角、分初步认识小数</td>
+          <td rowspan="3">黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td>量身高</td>
+          <td>量身高（借助米、分数、厘米初步认识小数）</td>
+        </tr>
+
+        <tr>
+          <td>贵比三家</td>
+          <td>小数的大小比较</td>
+        </tr>
+
+        <tr>
+          <td>存零用钱</td>
+          <td>小数的不进位加法和不退位减法</td>
+          <td rowspan="2">黄色小数板、小数的邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>竹子的生长</td>
+          <td>小数的进位加法和退位减法</td>
+        </tr>
+
+        <tr>
+          <td>生活中的小数</td>
+          <td>初步体会小数计算单位之间的关系</td>
+          <td>融合题卡</td>
+        </tr>
+
+        <!-- 第八单元 -->
+        <tr id="u-3a-8">
+          <td rowspan="2">第八单元<br>调查与记录</td>
+          <td>评选吉祥物</td>
+          <td>调查方法</td>
+          <td rowspan="2">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>购买水果</td>
+          <td>记录调查数据</td>
+        </tr>
+
+        <!-- 综合实践·探索时间的秘密 -->
+        <tr id="u-3a-zh2">
+          <td rowspan="4">综合实践·<br>探索时间<br>的秘密</td>
+          <td>走进年月日</td>
+          <td>理解活动任务</td>
+          <td rowspan="4">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>年月日知多少</td>
+          <td>认识年、月、日及其关系</td>
+        </tr>
+
+        <tr>
+          <td>一天有多少</td>
+          <td>认识24时计时法、安排、记录一天的时间</td>
+        </tr>
+
+        <tr>
+          <td>畅谈年月日</td>
+          <td>展示成果、反思改进与自我评价</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 三年级下册 ==================== -->
+  <section class="grade-section" id="grade-3b">
+    <div class="grade-title">三年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 除法 -->
+        <tr id="u-3b-1">
+          <td rowspan="22">第一单元<br>除法</td>
+          <td rowspan="3">分桃子</td>
+          <td>两位数除以一位数</td>
+          <td rowspan="15">试管除法</td>
+        </tr>
+
+        <tr>
+          <td>用平均分体会除法竖式</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">分橘子</td>
+          <td>两位数除以一位数</td>
+        </tr>
+
+        <tr>
+          <td>会除法算式，会判断两位数除以一位数的商是几位数</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">商是几位数</td>
+          <td>三位数除以一位数的商是几位数</td>
+        </tr>
+
+        <tr>
+          <td>列竖式</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">猴子的烦恼</td>
+          <td>被除数中有0、0除以任何不是0的数都是0</td>
+        </tr>
+
+        <tr>
+          <td>商的中间或末尾有0的除法</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">节约</td>
+          <td>被除数中没有0，商中间或末尾商0的除法计算</td>
+        </tr>
+
+        <tr>
+          <td>能正确进行商中间或末尾商0的除法竖式计算</td>
+        </tr>
+
+        <tr>
+          <td>用估算、重算、乘法的验算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">集邮</td>
+          <td>掌握三位数除以一位数，商是两位数的除法</td>
+          <td rowspan="3">试管除法</td>
+        </tr>
+
+        <tr>
+          <td>估算</td>
+        </tr>
+
+        <tr>
+          <td>用乘法和加法验算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">买新书</td>
+          <td>用画图的方法分析数量关系</td>
+          <td rowspan="2">融合：画图</td>
+        </tr>
+
+        <tr>
+          <td>连除和乘除混合的两步运算顺序</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">讲故事</td>
+          <td>画图或列表的方法解决问题</td>
+          <td rowspan="2">融合：画图</td>
+        </tr>
+
+        <tr>
+          <td>连除和乘除混合的两步运算顺序</td>
+        </tr>
+
+        <!-- 第二单元 图形的运动 -->
+        <tr id="u-3b-2">
+          <td rowspan="6">第二单元<br>图形的运动</td>
+          <td rowspan="2">轴对称（一）</td>
+          <td>认识轴对称图形</td>
+          <td rowspan="6">建构三角形盒</td>
+        </tr>
+
+        <tr>
+          <td>找出对称轴</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">轴对称（二）</td>
+          <td>加深对称对称图形特点的体会</td>
+        </tr>
+
+        <tr>
+          <td>画出对称图形的另一半</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">平移和旋转</td>
+          <td>感受平移和旋转</td>
+        </tr>
+
+        <tr>
+          <td>在方格纸上平移</td>
+        </tr>
+
+        <!-- 第三单元 乘法 -->
+        <tr id="u-3b-3">
+          <td rowspan="6">第三单元<br>乘法</td>
+          <td>找规律</td>
+          <td>两位数乘整十数</td>
+          <td rowspan="6">银行游戏；棋盘板</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">队列表演（一）</td>
+          <td>数位乘法</td>
+        </tr>
+
+        <tr>
+          <td>横式笔算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">队列表演（二）</td>
+          <td>竖式</td>
+        </tr>
+
+        <tr>
+          <td>数位乘法的逻辑</td>
+        </tr>
+
+        <tr>
+          <td>电影院</td>
+          <td>估算</td>
+        </tr>
+
+        <!-- 第四单元 千克、克、吨 -->
+        <tr id="u-3b-4">
+          <td rowspan="5">第四单元<br>千克、克、吨</td>
+          <td rowspan="3">有多重</td>
+          <td>认识千克、克</td>
+          <td rowspan="5">天平和砝码；黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td>根据生活实际选择合适的质量单位</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">1吨有多重</td>
+          <td>认识吨</td>
+        </tr>
+
+        <tr>
+          <td>估计物体的质量</td>
+        </tr>
+
+        <!-- 第五单元 面积 -->
+        <tr id="u-3b-5">
+          <td rowspan="6">第五单元<br>面积</td>
+          <td rowspan="2">什么是面积</td>
+          <td>认识面积</td>
+          <td rowspan="2">几何嵌板</td>
+        </tr>
+
+        <tr>
+          <td>比较图形面积大小</td>
+        </tr>
+
+        <tr>
+          <td>面积单位</td>
+          <td>认识平方米、平方分米、平方厘米</td>
+          <td>黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">长方形的面积</td>
+          <td>长方形和正方形的面积计算</td>
+          <td rowspan="2">黄色面积教具</td>
+        </tr>
+
+        <tr>
+          <td>估测面积</td>
+        </tr>
+
+        <tr>
+          <td>面积单位换算</td>
+          <td>面积单位的进率</td>
+          <td>黄色小数板</td>
+        </tr>
+
+        <!-- 数学好玩 -->
+        <tr id="u-3b-sx">
+          <td rowspan="3">数学好玩</td>
+          <td>设计旗标</td>
+          <td></td>
+          <td rowspan="3">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>我们一起去游园</td>
+          <td>租车问题</td>
+        </tr>
+
+        <tr>
+          <td>有趣的推理</td>
+          <td>推理物品的位置等</td>
+        </tr>
+
+        <!-- 第六单元 分数 -->
+        <tr id="u-3b-6">
+          <td rowspan="4">第六单元<br>分数</td>
+          <td>分一分（一）</td>
+          <td>一个物体或图形作为整体的分数认识；读写分数、分数各部分名称</td>
+          <td>分数嵌板</td>
+        </tr>
+
+        <tr>
+          <td>分一分（二）</td>
+          <td>多个物体或图形作为整体的分数认识（分数的集合模型）</td>
+          <td>自制教具</td>
+        </tr>
+
+        <tr>
+          <td>比大小</td>
+          <td>分母不大于10的同分母（或同分子）分数的大小比较</td>
+          <td rowspan="2">分数嵌板</td>
+        </tr>
+
+        <tr>
+          <td>吃西瓜</td>
+          <td>分母不大于10的同分母分数的加减计算</td>
+        </tr>
+
+        <!-- 第七单元 -->
+        <tr id="u-3b-7">
+          <td rowspan="2">第七单元<br>数据的整理<br>和表示</td>
+          <td>小小鞋店</td>
+          <td>整理和分析数据</td>
+          <td rowspan="2">项目式学习</td>
+        </tr>
+
+        <tr>
+          <td>快乐成长</td>
+          <td>收集、整理和分析数据</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 四年级上册 ==================== -->
+  <section class="grade-section" id="grade-4a">
+    <div class="grade-title">四年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 认识更大的数 -->
+        <tr id="u-4a-1">
+          <td rowspan="13">第一单元<br>认识更大的数</td>
+          <td rowspan="3">数一数</td>
+          <td>认识计数单位"十万"</td>
+          <td rowspan="10">百万箱及数卡</td>
+        </tr>
+
+        <tr>
+          <td>位值的概念</td>
+        </tr>
+
+        <tr>
+          <td>在生活情境中体会大数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">认识更大的数</td>
+          <td>认识数位顺序表及更大的数</td>
+        </tr>
+
+        <tr>
+          <td>相邻数位十进关系</td>
+        </tr>
+
+        <tr>
+          <td>数位顺序表、个级数、万级数、亿级数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">人口普查</td>
+          <td>大数的读写</td>
+        </tr>
+
+        <tr>
+          <td>大数与社会生活的联系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">国土面积</td>
+          <td>大数的比较</td>
+        </tr>
+
+        <tr>
+          <td>表示整万数、整亿数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">近似数</td>
+          <td>认识近似数</td>
+          <td rowspan="2">融合</td>
+        </tr>
+
+        <tr>
+          <td>四舍五入</td>
+        </tr>
+
+        <tr>
+          <td>从结绳计数说起</td>
+          <td>理解计数方法的发展过程</td>
+          <td>数学故事</td>
+        </tr>
+
+        <!-- 第二单元 线与角 -->
+        <tr id="u-4a-2">
+          <td rowspan="14">第二单元<br>线与角</td>
+          <td rowspan="3">线的认识</td>
+          <td>认识线段、射线和直线，用字母表示</td>
+          <td rowspan="3">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>两点之间线段最短</td>
+        </tr>
+
+        <tr>
+          <td>实物里抽象出线</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">相交与垂直</td>
+          <td>认识相交与垂线</td>
+          <td rowspan="2">铅锤、三角尺和直尺</td>
+        </tr>
+
+        <tr>
+          <td>借助三角尺画已知直线的垂线</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">平移与平行</td>
+          <td>认识平行线</td>
+          <td rowspan="3">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>找平行线</td>
+        </tr>
+
+        <tr>
+          <td>画平行线</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">旋转与角</td>
+          <td>认识平角和周角</td>
+          <td rowspan="2">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>认识锐角、直角、钝角、平角和周角的关系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">角的度量（一）</td>
+          <td>认识角的度量单位，1°</td>
+          <td rowspan="2">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>直角、平角、周角度数的关系；估测生活中角的大小</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">角的度量（二）</td>
+          <td>量角和画角</td>
+          <td rowspan="2">量角器</td>
+        </tr>
+
+        <tr>
+          <td>用量角器量角、画角</td>
+        </tr>
+
+        <!-- 第三单元 乘法 -->
+        <tr id="u-4a-3">
+          <td rowspan="5">第三单元<br>乘法</td>
+          <td rowspan="2">卫星运行时间</td>
+          <td>三位数乘两位数的不同算法</td>
+          <td rowspan="2">棋盘板、平算珠架、银行游戏</td>
+        </tr>
+
+        <tr>
+          <td>估算</td>
+        </tr>
+
+        <tr>
+          <td>有多少名观众</td>
+          <td>大数的估计</td>
+          <td>棋盘板</td>
+        </tr>
+
+        <tr>
+          <td>神奇的计算工具</td>
+          <td>认识计算器</td>
+          <td>计算器</td>
+        </tr>
+
+        <tr>
+          <td>有趣的算式</td>
+          <td>用计算器探索规律</td>
+          <td>平算珠架、棋盘板</td>
+        </tr>
+
+        
+        <!-- 第四单元 运算律 -->
+        <tr id="u-4a-4">
+          <td rowspan="9">第四单元<br>运算律</td>
+          <td>买文具</td>
+          <td>四则混合运算顺序和认识中括号</td>
+          <td>数字盒</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">加法交换律和<br>乘法交换律</td>
+          <td>加法交换律和乘法交换律</td>
+          <td rowspan="8">珠子和数字盒</td>
+        </tr>
+
+
+        <tr>
+          <td>用字母表示</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">加法结合律</td>
+          <td>用字母表示</td>
+        </tr>
+
+        <tr>
+          <td>简便运算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">乘法结合律</td>
+          <td>用字母表示</td>
+        </tr>
+
+        <tr>
+          <td>简便运算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">乘法分配律</td>
+          <td>用字母表示</td>
+        </tr>
+
+        <tr>
+          <td>简便运算</td>
+        </tr>
+
+        <!-- 第五单元 方向与位置 -->
+        <tr id="u-4a-5">
+          <td rowspan="2">第五单元<br>方向与位置</td>
+          <td>去图书馆</td>
+          <td>描述简单的路线图（方向和距离）</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>确定位置</td>
+          <td>在方格纸上用数对确定位置</td>
+          <td></td>
+        </tr>
+
+        <!-- 第六单元 除法 -->
+        <tr id="u-4a-6">
+          <td rowspan="8">第六单元<br>除法</td>
+          <td rowspan="2">买文件</td>
+          <td>除数是整十数的除法（算理及口算）</td>
+          <td rowspan="5">试管除法</td>
+        </tr>
+
+        <tr>
+          <td>判断商是几位数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">参观花圃</td>
+          <td>试商、估商</td>
+        </tr>
+
+        <tr>
+          <td>正确计算三位数除以两位数</td>
+        </tr>
+
+        <tr>
+          <td>秋游</td>
+          <td>三位数除以两位数笔算、试商</td>
+        </tr>
+
+        <tr>
+          <td>商不变规律</td>
+          <td>被除数和除数同时扩大，商不变</td>
+          <td>邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">路程、时间与速度</td>
+          <td>常见的数量关系的含义</td>
+          <td rowspan="2">应用题</td>
+        </tr>
+
+        <tr>
+          <td>数量关系公式</td>
+        </tr>
+
+        <!-- 第七单元 负数 -->
+        <tr id="u-4a-7">
+          <td rowspan="2">第七单元<br>负数</td>
+          <td>温度</td>
+          <td>直观地认识正、负数</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>正负数</td>
+          <td>了解正、负数及整数的意义</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 四年级下册 ==================== -->
+  <section class="grade-section" id="grade-4b">
+    <div class="grade-title">四年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 小数的意义和加减法 -->
+        <tr id="u-4b-1">
+          <td rowspan="16">第一单元<br>小数的意义<br>和加减法</td>
+          <td rowspan="4">小数的意义（一）</td>
+          <td>认识小数的意义</td>
+          <td rowspan="4">分数转化小数的教具，黄色小数板。</td>
+        </tr>
+
+        <tr>
+          <td>认识元角分</td>
+        </tr>
+
+        <tr>
+          <td>十进分数与小数点互化</td>
+        </tr>
+
+        <tr>
+          <td>生活中的小数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">小数的意义（二）</td>
+          <td>进一步认识小数的意义</td>
+          <td rowspan="6">黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td>度量单位转化时出现小数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">小数的意义（三）</td>
+          <td>认识小数的计数单位及其进率</td>
+        </tr>
+
+        <tr>
+          <td>掌握小数末尾添上“0”或去掉“0”，小数大小不变的性质</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">比大小</td>
+          <td>小数的大小比较</td>
+        </tr>
+
+        <tr>
+          <td>在数线上表示小数的位置</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">买菜</td>
+          <td>小数的不进位加法和不退位减法</td>
+          <td rowspan="2">黄色小数板、小数的邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>用小数加减解决问题，可以对计算结果进行估算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">比身高</td>
+          <td>小数的进位加法和退位减法</td>
+          <td rowspan="2">黄色小数板、小数的邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>解决问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">歌手大赛</td>
+          <td>小数的加减混合运算</td>
+          <td rowspan="2">黄色小数板、小数的邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>解决问题</td>
+        </tr>
+
+        <!-- 第二单元 认识三角形和四边形 -->
+        <tr id="u-4b-2">
+          <td rowspan="10">第二单元<br>认识三角形<br>和四边形</td>
+          <td rowspan="2">图形分类</td>
+          <td>对学过的图形进行分类</td>
+          <td rowspan="2">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>三角形的稳定性</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">三角形分类</td>
+          <td>认识不同类型的三角形</td>
+          <td rowspan="2">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>学会分类</td>
+        </tr>
+
+        <tr>
+          <td>探索与发现</td>
+          <td>三角形内角和</td>
+          <td>自制"三角形"信封</td>
+        </tr>
+
+        <tr>
+          <td>三角形内角和</td>
+          <td>用三角形内角和的性质解决问题</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">探索与发现、<br>三角形边的关系</td>
+          <td>三角形任意两边之和大于第三边</td>
+          <td rowspan="2">几何木棒</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">四边形分类</td>
+          <td>进一步认识平行四边形、初步认识梯形</td>
+          <td rowspan="2">几何木棒；几何图框</td>
+        </tr>
+
+        <tr>
+          <td>长方形和正方形是特殊的平行四边形</td>
+        </tr>
+
+        <!-- 第三单元 小数乘法 -->
+        <tr id="u-4b-3">
+          <td rowspan="14">第三单元<br>小数乘法</td>
+          <td rowspan="3">买文具</td>
+          <td>小数乘整数的意义</td>
+          <td rowspan="3">小数棋盘板</td>
+        </tr>
+
+        <tr>
+          <td>借助面积模型探索简单小数乘整数算法过程</td>
+        </tr>
+
+        <tr>
+          <td>简单口算、解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">小数点搬家</td>
+          <td>探索小数点移动引起小数大小变化的规律</td>
+          <td rowspan="2">小数棋盘板</td>
+        </tr>
+
+        <tr>
+          <td>探索小数点移动引起小数大小变化的规律与特殊的小数乘法、除法之间的联系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">街心广场</td>
+          <td>积的小数位数与乘数小数位数的关系</td>
+          <td rowspan="2">小数棋盘板</td>
+        </tr>
+
+        <tr>
+          <td>借助面积模型探索小数乘法</td>
+        </tr>
+
+        <tr>
+          <td>包装</td>
+          <td>小数乘法的竖式计算（一）</td>
+          <td>抽象</td>
+        </tr>
+
+        <tr>
+          <td rowspan="4">蚕丝</td>
+          <td>小数乘法的竖式计算（二）</td>
+          <td rowspan="4">抽象</td>
+        </tr>
+
+        <tr>
+          <td>确定积的小数位数</td>
+        </tr>
+
+        <tr>
+          <td>整数乘法的算法的迁移</td>
+        </tr>
+
+        <tr>
+          <td>乘数大于 1、等于 1 和小于 1 时，积和另外一个乘数的大小关系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">手拉手</td>
+          <td>小数加、减、乘混合运算</td>
+          <td rowspan="2">抽象</td>
+        </tr>
+
+        <tr>
+          <td>运算顺序和运算律</td>
+        </tr>
+
+        <!-- 第四单元 观察物体 -->
+        <tr id="u-4b-4">
+          <td rowspan="4">第四单元<br>观察物体</td>
+          <td>看一看</td>
+          <td>从不同位置观察立体图形；能在方格纸上画出从它的正面、上面、侧面看到的图形</td>
+          <td rowspan="4">2cm的立方体</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">我说你搭</td>
+          <td>按照指令搭出立体图形；根据立体图形正面、上面、侧面的</td>
+        </tr>
+
+        <tr>
+          <td>形状特征、确定搭出的形状</td>
+        </tr>
+
+        <tr>
+          <td>搭一搭</td>
+          <td>还原立体图形；根据立体图形正面、上面、侧面的形状特征，确定搭出的形状</td>
+        </tr>
+
+        <!-- 第五单元 认识方程 -->
+        <tr id="u-4b-5">
+          <td rowspan="7">第五单元<br>认识方程</td>
+          <td rowspan="2">字母表示数</td>
+          <td>用字母表示数和数量关系</td>
+          <td rowspan="7">等量关系、融合教具</td>
+        </tr>
+
+        <tr>
+          <td>能用字母表示运算符和有关图形的计算公式</td>
+        </tr>
+
+        <tr>
+          <td>等量关系</td>
+          <td>找等量关系</td>
+        </tr>
+
+        <tr>
+          <td>方程</td>
+          <td>用方程式表示等量关系</td>
+        </tr>
+
+        <tr>
+          <td>解方程（一）</td>
+          <td>解形如x+5=12的方程</td>
+        </tr>
+
+        <tr>
+          <td>解方程（二）</td>
+          <td>解形如2x=10的方程</td>
+        </tr>
+
+        <tr>
+          <td>猜数游戏</td>
+          <td>进一步体会等量关系；解方程如ax±b=c（a≠0）的方程</td>
+        </tr>
+
+        <!-- 第六单元 数据的表示和分析 -->
+        <tr id="u-4b-6">
+          <td rowspan="7">第六单元<br>数据的表示<br>和分析</td>
+          <td>生日</td>
+          <td>认识条形统计图，能根据统计图回答简单的问题</td>
+          <td rowspan="7"></td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">裁蒜苗（一）</td>
+          <td>1格表示多个单位的条形统计图</td>
+        </tr>
+
+        <tr>
+          <td>能读出条形统计图表示的信息并对数据进行简单的分析</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">裁蒜苗（二）</td>
+          <td>认识折线统计图</td>
+        </tr>
+
+        <tr>
+          <td>能从折线统计图上获取数据信息，并进行简单预测</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">平均数</td>
+          <td>认识平均数</td>
+        </tr>
+
+        <tr>
+          <td>结合统计图表，解决一些简单的与平均数有关的实际问题</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 五年级上册 ==================== -->
+  <section class="grade-section" id="grade-5a">
+    <div class="grade-title">五年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 小数除法 -->
+        <tr id="u-5a-1">
+          <td rowspan="14">第一单元<br>小数除法</td>
+          <td rowspan="3">精打细算</td>
+          <td>除数是整数的小数除法</td>
+          <td rowspan="14">小数盒、小数邮票游戏</td>
+        </tr>
+
+        <tr>
+          <td>竖式</td>
+        </tr>
+
+        <tr>
+          <td>体会小数除法的意义及应用</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">打扫卫生</td>
+          <td>除数是整数、需要补0的小数除法</td>
+        </tr>
+
+        <tr>
+          <td>结合具体情境进行小数除法的估算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">谁打电话的时间长</td>
+          <td>除数是小数的小数除法</td>
+        </tr>
+
+        <tr>
+          <td>竖式计算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">人民币兑换</td>
+          <td>积、商的近似值，商和被除数的近似值</td>
+        </tr>
+
+        <tr>
+          <td>探索除数大于1（或小于1、接近1）时，商与被除数之间的关系</td>
+        </tr>
+
+        <tr>
+          <td>小数除法的估算与计算</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">除得尽吗</td>
+          <td>循环小数</td>
+        </tr>
+
+        <tr>
+          <td>四舍五入法求循环小数近似值</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">调查"生活垃圾"</td>
+          <td>小数点四则混合运算</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <!-- 第二单元 轴对称和平移 -->
+        <tr id="u-5a-2">
+          <td rowspan="5">第二单元<br>轴对称和平移</td>
+          <td>轴对称再认识（一）</td>
+          <td>能画出轴对称图形的对称轴</td>
+          <td rowspan="5"></td>
+        </tr>
+
+        <tr>
+          <td>轴对称再认识（二）</td>
+          <td>能补全简单的轴对称图形</td>
+        </tr>
+
+        <tr>
+          <td>平移</td>
+          <td>能在方格纸上按水平或垂直方向将简单图形平移</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">欣赏与设计</td>
+          <td>数学欣赏</td>
+        </tr>
+
+        <tr>
+          <td>体会图形运动的特点</td>
+        </tr>
+
+        <!-- 第三单元 倍数与因数 -->
+        <tr id="u-5a-3">
+          <td rowspan="9">第三单元<br>倍数与因数</td>
+          <td rowspan="2">倍数与因数</td>
+          <td>认识倍数及因数</td>
+          <td rowspan="2">倍数表</td>
+        </tr>
+
+        <tr>
+          <td>探索找一个数的倍数的方法，在1-100的自然数中，找出10以内某个自然数的所有倍数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">探索活动：2、5的倍数的特征</td>
+          <td>能判断一个数是否为2或5的倍数</td>
+          <td rowspan="2">金色珠子</td>
+        </tr>
+
+        <tr>
+          <td>判断一非零自然数是否是奇数或偶数</td>
+        </tr>
+
+        <tr>
+          <td>探索活动：3的倍数的特征</td>
+          <td>能判断一个数是否为3的倍数</td>
+          <td>金色珠子</td>
+        </tr>
+
+        <tr>
+          <td>找因数</td>
+          <td>在1-100的自然数中，能找出某个自然数的所有因数</td>
+          <td>钉板、因数表</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">找质数</td>
+          <td>理解质数与合数</td>
+          <td rowspan="3">倍数表</td>
+        </tr>
+
+        <tr>
+          <td>判断一个数是质数或合数</td>
+        </tr>
+
+        <tr>
+          <td>可以合并单元格（丰富对数学发展的认识，感受数学文化的魅力）没啥用可以删掉</td>
+        </tr>
+
+        <!-- 第四单元 多边形面积 -->
+        <tr id="u-5a-4">
+          <td rowspan="7">第四单元<br>多边形面积</td>
+          <td rowspan="2">比较图形的面积</td>
+          <td>借助方格纸，判断面积</td>
+          <td rowspan="7">黄色面积教具</td>
+        </tr>
+
+        <tr>
+          <td>探索割补法在探索面积时的运用</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">认识底和高</td>
+          <td>认识平行四边形、三角形、梯形的底和高</td>
+        </tr>
+
+        <tr>
+          <td>画出四边形、三角形、梯形的高</td>
+        </tr>
+
+        <tr>
+          <td>探索平行四边形的面积</td>
+          <td>探索、掌握、计算平行四边形的面积并解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td>探索三角形的面积</td>
+          <td>探索、掌握、计算三角形的面积并解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td>探索梯形的面积</td>
+          <td>探索、掌握、计算梯形的面积并解决实际问题</td>
+        </tr>
+
+        <!-- 第五单元 分数的意义 -->
+        <tr id="u-5a-5">
+          <td rowspan="14">第五单元<br>分数的意义</td>
+          <td rowspan="2">分数的再认识（一）</td>
+          <td>分数的含义</td>
+          <td rowspan="14">圆形分数片</td>
+        </tr>
+
+        <tr>
+          <td>理解分数表示多少的相对性</td>
+        </tr>
+
+        <tr>
+          <td>分数的再认识（二）</td>
+          <td>认识分数单位</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">分饼</td>
+          <td>真分数、假分数和带分数的意义</td>
+        </tr>
+
+        <tr>
+          <td>正确读写假分数、带分数</td>
+        </tr>
+
+        <tr>
+          <td>了解真分数、假分数和1的关系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数与除法</td>
+          <td>分数与除法的关系</td>
+        </tr>
+
+        <tr>
+          <td>假分数与带分数互化</td>
+        </tr>
+
+        <tr>
+          <td>分数基本性质</td>
+          <td>运用分数的基本性质解决问题</td>
+        </tr>
+
+        <tr>
+          <td>找最大公因</td>
+          <td>找两个数的公因数和最大公因数</td>
+        </tr>
+
+        <tr>
+          <td>约分</td>
+          <td>掌握约分的方法，能正确地约分</td>
+        </tr>
+
+        <tr>
+          <td>找最小公倍数</td>
+          <td>找两个数的最小公倍数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数的大小</td>
+          <td>异分母分数的大小比较</td>
+        </tr>
+
+        <tr>
+          <td>掌握通分的方法</td>
+        </tr>
+
+        <!-- 第六单元 组合图形的面积 -->
+        <tr id="u-5a-6">
+          <td rowspan="4">第六单元<br>组合图形的面积</td>
+          <td>组合图形的面积</td>
+          <td>用割补法计算组合图形的面积</td>
+        </tr>
+
+        <tr>
+          <td>探索活动：成长的脚印</td>
+          <td>用数方格的方法估算不规则图形的面积</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">公顷、平方千米</td>
+          <td>面积单位的换算</td>
+        </tr>
+
+        <tr>
+          <td>认识公顷、平方千米等面积单位</td>
+        </tr>
+
+        <!-- 第七单元 可能性 -->
+        <tr id="u-5a-7">
+          <td rowspan="2">第七单元<br>可能性</td>
+          <td>谁先走</td>
+          <td>判断规则的公平性、设计公平的规则</td>
+          <td rowspan="2"></td>
+        </tr>
+
+        <tr>
+          <td>摸球游戏</td>
+          <td>初步感受数据的随机性</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 五年级下册 ==================== -->
+  <section class="grade-section" id="grade-5b">
+    <div class="grade-title">五年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 分数加减法 -->
+        <tr id="u-5b-1">
+          <td rowspan="7">第一单元<br>分数加减法</td>
+          <td rowspan="2">折纸</td>
+          <td>异分母分数加减法算理及方法；分母互质、分母有倍数关系、分母有相同因数</td>
+          <td rowspan="5">圆形分数片</td>
+        </tr>
+
+        <tr>
+          <td>体验分数直观模型和数学"转化"思想在解决问题中的运用</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">星期日的安排</td>
+          <td>同分母分数的加减混合运算</td>
+        </tr>
+
+        <tr>
+          <td>异分母分数的加减混合运算</td>
+        </tr>
+
+        <tr>
+          <td>加法运算律</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数王国与小数王国</td>
+          <td>小数和分数比较大小</td>
+          <td rowspan="2">分数小数互化板</td>
+        </tr>
+
+        <tr>
+          <td>分数与小数互化</td>
+        </tr>
+
+        <!-- 第二单元 长方体 -->
+        <tr id="u-5b-2">
+          <td rowspan="6">第二单元<br>长方体</td>
+          <td rowspan="2">长方体的认识</td>
+          <td>长、正方体特征的认识</td>
+          <td rowspan="4">立体几何组</td>
+        </tr>
+
+        <tr>
+          <td>长、正方体各要素名称</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">展开与折叠</td>
+          <td>长、正方体的展开图</td>
+        </tr>
+
+        <tr>
+          <td>长、正方体与展开图之间的对应关系</td>
+        </tr>
+
+        <tr>
+          <td>长方体的表面积</td>
+          <td>探索并掌握长、正方体表面积计算</td>
+          <td rowspan="2">2cm小立方体</td>
+        </tr>
+
+        <tr>
+          <td>露在外面的面</td>
+          <td>求物体露在外面的面积的计算</td>
+        </tr>
+
+        <!-- 第三单元 分数乘法 -->
+        <tr id="u-5b-3">
+          <td rowspan="13">第三单元<br>分数乘法</td>
+          <td rowspan="3">分数乘法（一）</td>
+          <td>整数乘以分数单位的乘法意义（单位量是分数单位，单位数是整数，即表示某个分数单位的几倍）</td>
+          <td rowspan="13">圆形分数片</td>
+        </tr>
+
+        <tr>
+          <td>分数乘以整数的乘法意义及计算方法（某个分数倍）</td>
+        </tr>
+
+        <tr>
+          <td>归纳计算方法并解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">分数乘法（二）</td>
+          <td>探究单位量是整数、单位数是分数单位的乘法意义（表示一个整数的几分之一）</td>
+        </tr>
+
+        <tr>
+          <td>探究单位量是整数、单位数是分数的乘法意义（表示一个整数的几分之几）</td>
+        </tr>
+
+        <tr>
+          <td>归纳计算方法并解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">分数乘法（三）</td>
+          <td>分数单位乘分数单位的意义及计算方法</td>
+        </tr>
+
+        <tr>
+          <td>分数乘分数的乘法的意义及其计算方法</td>
+        </tr>
+
+        <tr>
+          <td>归纳计算方法并解决实际问题</td>
+        </tr>
+
+        <!-- 倒数 -->
+        <tr>
+          <td rowspan="4">倒数</td>
+          <td>通过计算认识倒数</td>
+          <td rowspan="4"></td>
+        </tr>
+
+        <tr>
+          <td>借助面积为1的长方形，认识倒数</td>
+        </tr>
+
+        <tr>
+          <td>如何求倒数</td>
+        </tr>
+
+        <tr>
+          <td>0为什么没有倒数</td>
+        </tr>
+
+        <!-- 第四单元 长方体（二） -->
+        <tr id="u-5b-4">
+          <td rowspan="9">第四单元<br>长方体（二）</td>
+          <td rowspan="2">体积和容积</td>
+          <td>认识物体的体积</td>
+          <td rowspan="2">体积、容积教具</td>
+        </tr>
+
+        <tr>
+          <td>认识容器的容积</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">体积单位</td>
+          <td>认识常见体积单位</td>
+          <td rowspan="3">黄色小数板；1cm³正方体、百万箱</td>
+        </tr>
+
+        <tr>
+          <td>体会1m³、1dm³、1cm³以及1L、1mL的实际意义</td>
+        </tr>
+
+        <tr>
+          <td>说明生活中体积大约1m³、1dm³、1cm³的物体有哪些</td>
+        </tr>
+
+        <tr>
+          <td>长方体的体积</td>
+          <td>探索并掌握长方体、正方体体积的计算方法</td>
+          <td>体积教具</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">体积单位换算</td>
+          <td>探索进率会换算</td>
+          <td rowspan="2">黄色小数板</td>
+        </tr>
+
+        <tr>
+          <td>了解长度、面积、体积单位之间的联系与区别</td>
+        </tr>
+
+        <tr>
+          <td>有趣的测量</td>
+          <td>不规则物体体积的测量方法</td>
+          <td>融合</td>
+        </tr>
+
+        <!-- 第五单元 分数除法 -->
+        <tr id="u-5b-5">
+          <td rowspan="6">第五单元<br>分数除法</td>
+          <td rowspan="3">分数除法（一）</td>
+          <td>探索并理解分数除以整数的意义（面积模型）</td>
+          <td rowspan="5">圆形分数片</td>
+        </tr>
+
+        <tr>
+          <td>探索并理解分数除以整数的方法</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数除法（二）</td>
+          <td>探索并掌握除数是分数的除法的方法</td>
+        </tr>
+
+        <tr>
+          <td>探索除数大于、小于或等于1时，商与被除数的关系</td>
+        </tr>
+
+        <tr>
+          <td>分数除法（三）</td>
+          <td>用方程式解决简单的有关分数的实际问题</td>
+          <td>自制教具</td>
+        </tr>
+
+        <!-- 第六单元 确定位置 -->
+        <tr id="u-5b-6">
+          <td rowspan="3">第六单元<br>确定位置</td>
+          <td rowspan="2">确定位置（一）</td>
+          <td>根据方向和距离确定位置</td>
+          <td rowspan="2">自制教具</td>
+        </tr>
+
+        <tr>
+          <td>根据方向和距离描述行走路线</td>
+        </tr>
+
+        <tr>
+          <td>确定位置（二）</td>
+          <td>能根据平面图确定图上任意两地的相对位置</td>
+          <td>自制教具</td>
+        </tr>
+
+        <!-- 第七单元 用方程解决问题 -->
+        <tr id="u-5b-7">
+          <td rowspan="2">第七单元<br>用方程解决<br>问题</td>
+          <td>邮票的张数</td>
+          <td>（解方程如ax±x=b的方程）</td>
+          <td rowspan="2">自制教具</td>
+        </tr>
+
+        <tr>
+          <td>相遇问题</td>
+          <td>运用方程解决实际问题</td>
+        </tr>
+
+        <!-- 第八单元 数据的表示和分析 -->
+        <tr id="u-5b-8">
+          <td rowspan="6">第八单元<br>数据的表示<br>和分析</td>
+          <td rowspan="2">复式条形统计图</td>
+          <td>认识复式条形统计图及其特点</td>
+          <td rowspan="6">融合</td>
+        </tr>
+
+        <tr>
+          <td>分析数据</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">复式折线统计图</td>
+          <td>认识复式折线统计图及其特点</td>
+        </tr>
+
+        <tr>
+          <td>根据图标回答问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">平均数的再认识</td>
+          <td>进一步认识平均数及其实际意义</td>
+        </tr>
+
+        <tr>
+          <td>体会极端数字</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 六年级上册 ==================== -->
+  <section class="grade-section" id="grade-6a">
+    <div class="grade-title">六年级上册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 圆 -->
+        <tr id="u-6a-1">
+          <td rowspan="15">第一单元<br>圆</td>
+          <td rowspan="3">圆的认识（一）</td>
+          <td>体会圆的结构特征</td>
+          <td rowspan="5">几何图框</td>
+        </tr>
+
+        <tr>
+          <td>理解同圆中半径、直径以及直径和半径之间的关系；<br>体会圆心和半径的作用；会用圆规画圆</td>
+        </tr>
+
+        <tr>
+          <td>能用圆的知识解释生活中简单现象</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">圆的认识（二）</td>
+          <td>圆的轴对称图形</td>
+          <td rowspan="2"></td>
+        </tr>
+
+        <tr>
+          <td>用对称性确定圆心</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">欣赏与设计</td>
+          <td>用圆规设计简单的图案</td>
+          <td rowspan="2">几何金属嵌板</td>
+        </tr>
+
+        <tr>
+          <td>体会对称性</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">圆的周长</td>
+          <td>探索圆的周长与直径的关系，理解圆周率及圆周长的计算方法</td>
+          <td rowspan="8">圆面积</td>
+        </tr>
+
+        <tr>
+          <td>计算圆的周长</td>
+        </tr>
+
+        <tr>
+          <td>圆周率的历史</td>
+          <td>领略与计算圆周率有关的方法</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">圆的面积（一）</td>
+          <td>推导面积的公式</td>
+        </tr>
+
+        <tr>
+          <td>探究化圆为直的思想</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">圆的面积（二）</td>
+          <td>运用圆的面积公式计算面积</td>
+          <td rowspan="3"></td>
+        </tr>
+
+        <tr>
+          <td>探究圆的半径、周长和面积之间的关系</td>
+        </tr>
+
+        <tr>
+          <td>等积变形</td>
+        </tr>
+
+        <!-- 第二单元 分数混合运算 -->
+        <tr id="u-6a-2">
+          <td rowspan="6">第二单元<br>分数混合运算</td>
+          <td rowspan="2">分数混合运算（一）</td>
+          <td>分数乘除混合运算</td>
+          <td rowspan="6">融合</td>
+        </tr>
+
+        <tr>
+          <td>解决实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数混合运算（二）</td>
+          <td>增加几分之几、减少几分之几</td>
+        </tr>
+
+        <tr>
+          <td>乘法运算律的应用</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">分数混合运算（三）</td>
+          <td>用方程式分数运算</td>
+        </tr>
+
+        <tr>
+          <td>检验</td>
+        </tr>
+
+        <!-- 第三单元 观察物体 -->
+        <tr id="u-6a-3">
+          <td rowspan="3">第三单元<br>观察物体</td>
+          <td>搭积木比赛</td>
+          <td>从三个不同的方向观察物体（5个立方体搭建）</td>
+          <td rowspan="3">2cm立方体</td>
+        </tr>
+
+        <tr>
+          <td>观察到范围</td>
+          <td>不同位置观察物体的范围</td>
+        </tr>
+
+        <tr>
+          <td>天安门广场</td>
+          <td>不同位置观察物体的相对位置</td>
+        </tr>
+
+        <!-- 第四单元 百分数 -->
+        <tr id="u-6a-4">
+          <td rowspan="8">第四单元<br>百分数</td>
+          <td rowspan="3">百分数的认识</td>
+          <td>理解百分数的认识</td>
+          <td rowspan="8">融合</td>
+        </tr>
+
+        <tr>
+          <td>正确读写百分数</td>
+        </tr>
+
+        <tr>
+          <td>百分数与日常生活的密切联系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">合格率</td>
+          <td>理解合格率，解决合格率的问题</td>
+        </tr>
+
+        <tr>
+          <td>小数、分数化成百分数</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">营养含量</td>
+          <td>营养含量的问题</td>
+        </tr>
+
+        <tr>
+          <td>百分数化成小数、分数</td>
+        </tr>
+
+        <tr>
+          <td>这月我当家</td>
+          <td>用方程解决有关百分数的问题</td>
+        </tr>
+
+        <!-- 第五单元 数据处理 -->
+        <tr id="u-6a-5">
+          <td rowspan="7">第五单元<br>数据处理</td>
+          <td>扇形统计图</td>
+          <td>百分数在扇形图上的呈现</td>
+          <td rowspan="7">融合</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">统计图的选择</td>
+          <td>了解三种统计图的特点</td>
+        </tr>
+
+        <tr>
+          <td>选择合适的统计图</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">身高的情况</td>
+          <td>分组整理数据</td>
+        </tr>
+
+        <tr>
+          <td>体会条形统计图的特点</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">身高的变化</td>
+          <td>分组整理数据</td>
+        </tr>
+
+        <tr>
+          <td>两组身高数据的整理和描述</td>
+        </tr>
+
+        <!-- 第六单元 比的认识 -->
+        <tr id="u-6a-6">
+          <td rowspan="5">第六单元<br>比的认识</td>
+          <td rowspan="3">生活中的比</td>
+          <td>认识比、理解比</td>
+          <td rowspan="5">钉板</td>
+        </tr>
+
+        <tr>
+          <td>正确读写比、会求比值</td>
+        </tr>
+
+        <tr>
+          <td>理解比与除法、分数的关系</td>
+        </tr>
+
+        <tr>
+          <td>比的化简</td>
+          <td>运用商不变的规律和分数的基本性质化简比</td>
+        </tr>
+
+        <tr>
+          <td>比的应用</td>
+          <td>时间问题</td>
+        </tr>
+
+        <!-- 第七单元 百分数的应用 -->
+        <tr id="u-6a-7">
+          <td rowspan="6">第七单元<br>百分数的应用</td>
+          <td>百分数的应用（一）</td>
+          <td>理解增加百分之几、减少百分之几</td>
+          <td rowspan="6">融合</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">百分数的应用（二）</td>
+          <td>加深百分数的理解</td>
+        </tr>
+
+        <tr>
+          <td>能解决"比一个数增加百分之几的数"或"<br>比一个数减少百分之几的数"的实际问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">百分数的应用（三）</td>
+          <td>方程式解决百分数的问题</td>
+        </tr>
+
+        <tr>
+          <td>检验、解释结果</td>
+        </tr>
+
+        <tr>
+          <td>百分数的应用（四）</td>
+          <td>百分数解决利率的问题</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== 六年级下册 ==================== -->
+  <section class="grade-section" id="grade-6b">
+    <div class="grade-title">六年级下册</div>
+    <table>
+      <thead>
+        <tr>
+          <th>目录</th>
+          <th>章节</th>
+          <th>校内知识点</th>
+          <th>蒙氏教具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 第一单元 圆柱与圆锥 -->
+        <tr id="u-6b-1">
+          <td rowspan="8">第一单元<br>圆柱与圆锥</td>
+          <td rowspan="3">面的旋转</td>
+          <td>平面图形旋转形成几何体</td>
+          <td rowspan="5">立体几何组</td>
+        </tr>
+
+        <tr>
+          <td>圆柱和圆锥的特征</td>
+        </tr>
+
+        <tr>
+          <td>圆柱和圆锥的直观图</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">圆柱的表面积</td>
+          <td>探索并掌握圆柱侧面积和表面积的计算方法</td>
+        </tr>
+
+        <tr>
+          <td>侧面展开图的长、宽与圆柱有关量之间的关系</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">圆柱的体积</td>
+          <td>探索并掌握圆柱体积的计算方法</td>
+          <td rowspan="2">大立体几何组</td>
+        </tr>
+
+        <tr>
+          <td>探索并掌握圆柱形杯子的容积计算方法</td>
+        </tr>
+
+        <tr>
+          <td>圆锥的体积</td>
+          <td>探索并掌握圆锥体积的计算方法</td>
+          <td>中空体积教具</td>
+        </tr>
+
+        <!-- 第二单元 比例 -->
+        <tr id="u-6b-2">
+          <td rowspan="7">第二单元<br>比例</td>
+          <td rowspan="2">比例的认识</td>
+          <td>理解两个比相等的式子叫做比例</td>
+          <td rowspan="7">钉板</td>
+        </tr>
+
+        <tr>
+          <td>探索比例中两个内项的积等于两个外项的积</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">比例的应用</td>
+          <td>物物交换，体会解决问题方法的多样性</td>
+        </tr>
+
+        <tr>
+          <td>用"两个内项积等于两个外项积"解决问题</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">比例尺</td>
+          <td>体会比例尺产生的必要性</td>
+        </tr>
+
+        <tr>
+          <td>通过测量、绘图、估算、计算等，解决生活中的实际问题</td>
+        </tr>
+
+        <tr>
+          <td>图形的放大与缩小</td>
+          <td>探索图形按比例放大和缩小</td>
+        </tr>
+
+        <!-- 第三单元 图形的运动 -->
+        <tr id="u-6b-3">
+          <td rowspan="5">第三单元<br>图形的运动</td>
+          <td rowspan="2">图形的旋转（一）</td>
+          <td>认识旋转中心、顺时针或逆时针旋转、旋转角度等</td>
+          <td rowspan="5">蓝色三角形盒、几何嵌板</td>
+        </tr>
+
+        <tr>
+          <td>在方格纸上画出绕线段的一个端点旋转90°后的线段</td>
+        </tr>
+
+        <tr>
+          <td>图形的旋转（二）</td>
+          <td>能在方格纸上画出绕图形上某点旋转90°后的图形</td>
+        </tr>
+
+        <tr>
+          <td>图形的运动</td>
+          <td>平移、旋转和轴对称综合运用</td>
+        </tr>
+
+        <tr>
+          <td>欣赏与设计</td>
+          <td>通过平移、旋转和轴对称的知识设计美丽图案</td>
+        </tr>
+
+        <!-- 第四单元 正比例与反比例 -->
+        <tr id="u-6b-4">
+          <td rowspan="8">第四单元<br>正比例与<br>反比例</td>
+          <td rowspan="2">变化的量</td>
+          <td>列表与画图表示变量关系</td>
+          <td rowspan="8">融合</td>
+        </tr>
+
+        <tr>
+          <td>一个变量随着另一个变量变化而变化，一个量取确定的值，另一个量的取值也随着确定</td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">正比例</td>
+          <td>理解正比例</td>
+        </tr>
+
+        <tr>
+          <td>判断两个相关联的量是不是成正比例</td>
+        </tr>
+
+        <tr>
+          <td>比较、分析、归纳等，体会函数思想</td>
+        </tr>
+
+        <tr>
+          <td rowspan="2">画一画</td>
+          <td>画正比例图像</td>
+        </tr>
+
+        <tr>
+          <td>理解正比例图像上的点所表示的意义</td>
+        </tr>
+
+        <tr>
+          <td>反比例</td>
+          <td>探索并理解反比例意义的情境；引导学生研究两个变量之间的关系，从变化中看到"不变"，经历从具体情境中抽象出反比例的过程</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<script>
+  // === Assign column classes to <td> cells based on visual column position ===
+  // td:nth-child(n) fails with rowspan tables; we compute actual grid position.
+  (function assignColClasses() {
+    document.querySelectorAll('table').forEach(function(table) {
+      var grid = {};
+      table.querySelectorAll('tr').forEach(function(row, ri) {
+        var ci = 0;
+        row.querySelectorAll('td, th').forEach(function(cell) {
+          if (!grid[ri]) grid[ri] = {};
+          while (grid[ri][ci]) ci++;
+          var rs = cell.rowSpan || 1;
+          var cs = cell.colSpan || 1;
+          for (var r = ri; r < ri + rs; r++) {
+            if (!grid[r]) grid[r] = {};
+            for (var c = ci; c < ci + cs; c++) grid[r][c] = 1;
+          }
+          if (cell.tagName === 'TD') {
+            cell.classList.add('col' + (ci + 1));
+          }
+          ci += cs;
+        });
+      });
+    });
+  })();
+
+  // === TOC Active Highlighting via IntersectionObserver ===
+  const gradeLinks = document.querySelectorAll('.toc-grade-link');
+  const unitLinks  = document.querySelectorAll('.toc-unit-link');
+  const allSections = document.querySelectorAll('.grade-section');
+
+  const gradeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        gradeLinks.forEach(l => l.classList.remove('active'));
+        const activeGradeLink = document.querySelector(`.toc-grade-link[href="#${id}"]`);
+        if (activeGradeLink) activeGradeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  allSections.forEach(s => gradeObserver.observe(s));
+
+  // Unit-level highlighting
+  const allUnitRows = document.querySelectorAll('tr[id^="u-"]');
+  const unitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        unitLinks.forEach(l => l.classList.remove('active'));
+        const activeUnitLink = document.querySelector(`.toc-unit-link[href="#${id}"]`);
+        if (activeUnitLink) activeUnitLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-5% 0px -85% 0px', threshold: 0 });
+
+  allUnitRows.forEach(r => unitObserver.observe(r));
+
+  // Smooth scroll for all TOC links
+  document.querySelectorAll('.toc-grade-link, .toc-unit-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
