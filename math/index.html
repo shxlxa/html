@@ -15,24 +15,29 @@
 
     /* ===== Sidebar ===== */
     .sidebar {
-      width: 250px;
-      flex-shrink: 0;
-      position: fixed;
-      top: 0; left: 0;
-      height: 100vh;
+      height: 100%;
       overflow-y: auto;
       background: #fdf6ff;
       border-right: 1px solid #e0c8e8;
-      z-index: 100;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 10px 14px 10px 12px;
+      border-bottom: 2px solid #e8b4d8;
+      background: linear-gradient(135deg, #fdf6ff 0%, #f5e8f8 100%);
     }
 
     .sidebar-title {
+      flex: 1;
       font-size: 13px;
       font-weight: 700;
       color: #333;
-      padding: 14px 16px 12px;
-      border-bottom: 2px solid #e8b4d8;
-      line-height: 1.5;
+      line-height: 1.45;
+      letter-spacing: 0.3px;
     }
 
     .toc-grade {
@@ -160,13 +165,91 @@
     tbody tr:hover td {
       background-color: #fef5ff !important;
     }
+
+    /* ===== Sidebar layout wrapper ===== */
+    .sidebar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100vh;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .sidebar-wrap > * { pointer-events: auto; }
+
+    /* ===== TOC Toggle Button ===== */
+    .toc-toggle {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      z-index: 10;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid #d4b8dc;
+      border-radius: 8px;
+      background: #fff;
+      color: #9b6b9b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 4px rgba(140, 80, 140, 0.12);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, left 0.25s ease, border-radius 0.25s ease;
+    }
+    .toc-toggle:hover {
+      background: #faf0fa;
+      border-color: #c89cc0;
+      color: #c0392b;
+      box-shadow: 0 2px 8px rgba(140, 80, 140, 0.18);
+    }
+    .toc-toggle svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .toc-toggle .icon-expand { display: none; }
+    body.sidebar-hidden .toc-toggle {
+      left: 0;
+      border-radius: 0 10px 10px 0;
+      border-left: none;
+      box-shadow: 2px 0 10px rgba(140, 80, 140, 0.15);
+    }
+    body.sidebar-hidden .toc-toggle .icon-collapse { display: none; }
+    body.sidebar-hidden .toc-toggle .icon-expand { display: block; }
+
+    .sidebar-header { padding-left: 48px; }
+
+    /* ===== Sidebar hidden state ===== */
+    .sidebar {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.25s ease;
+    }
+    body.sidebar-hidden .sidebar { transform: translateX(-100%); }
+    body.sidebar-hidden .sidebar-wrap { width: auto; }
+    body.sidebar-hidden .content { margin-left: 0; }
+    .content { transition: margin-left 0.25s ease; }
   </style>
 </head>
 <body>
 
+<div class="sidebar-wrap">
+  <button id="toc-toggle" class="toc-toggle" type="button" title="显示/隐藏目录" aria-label="显示/隐藏目录">
+    <svg class="icon-collapse" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+    <svg class="icon-expand" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+
 <!-- ===== SIDEBAR ===== -->
 <nav class="sidebar">
-  <div class="sidebar-title">校内数学 VS 蒙小数学</div>
+  <div class="sidebar-header">
+    <span class="sidebar-title">校内数学 VS 蒙小数学</span>
+  </div>
 
   <div class="toc-grade">
     <a class="toc-grade-link" href="#grade-1a">一年级上册</a>
@@ -329,6 +412,7 @@
     </ul>
   </div>
 </nav>
+</div>
 
 <!-- ===== MAIN CONTENT ===== -->
 <main class="content">
@@ -3706,6 +3790,15 @@
       }
     });
   });
+</script>
+
+<script>
+  (function () {
+    var btn = document.getElementById('toc-toggle');
+    btn.addEventListener('click', function () {
+      document.body.classList.toggle('sidebar-hidden');
+    });
+  })();
 </script>
 </body>
 </html>
