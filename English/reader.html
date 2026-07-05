@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>阅读 - 英语学习资料库</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="reader">
+  <header class="reader-topbar">
+    <a class="btn" href="index.html">← 首页</a>
+    <button class="btn" id="menuBtn">☰ 目录</button>
+    <div class="reader-title" id="lessonTitle">加载中…</div>
+    <button class="btn" id="prevBtn">上一课</button>
+    <button class="btn" id="nextBtn">下一课</button>
+  </header>
+
+  <main class="pdf-container" id="pdfContainer">
+    <p class="pdf-status" id="pdfStatus">正在加载 PDF…</p>
+  </main>
+
+  <div class="zoom-controls">
+    <button id="zoomInBtn" title="放大">＋</button>
+    <button id="zoomOutBtn" title="缩小">－</button>
+    <button id="zoomFitBtn" title="适应宽度">⤢</button>
+  </div>
+
+  <div class="audio-bar">
+    <div class="audio-progress">
+      <span class="time" id="curTime">0:00</span>
+      <input type="range" id="seekBar" min="0" max="100" step="0.1" value="0">
+      <span class="time right" id="durTime">0:00</span>
+    </div>
+    <div class="audio-controls">
+      <button id="backBtn"><span>⏪</span><span>15s</span></button>
+      <button class="play-btn" id="playBtn">▶</button>
+      <button id="fwdBtn"><span>⏩</span><span>15s</span></button>
+      <button class="rate-btn" id="rateBtn">1x</button>
+    </div>
+  </div>
+
+  <div class="drawer-mask" id="drawerMask"></div>
+  <aside class="drawer" id="drawer">
+    <h3 id="drawerTitle">课程目录</h3>
+    <ul id="drawerList"></ul>
+  </aside>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <script src="assets/reader.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "series": [
+    {
+      "id": "graded-reading-1",
+      "title": "分级阅读第一级",
+      "description": "英语启蒙分级绘本，图文并茂，配高质量朗读音频",
+      "cover": "📚",
+      "lessons": [
+        { "no": 1, "title": "Nice to Meet You", "pdf": "materials/graded-reading-1/pdf/01.pdf", "audio": "materials/graded-reading-1/audio/01.mp3" },
+        { "no": 2, "title": "I Love My Sister", "pdf": "materials/graded-reading-1/pdf/02.pdf", "audio": "materials/graded-reading-1/audio/02.mp3" },
+        { "no": 3, "title": "Look at the Cloud", "pdf": "materials/graded-reading-1/pdf/03.pdf", "audio": "materials/graded-reading-1/audio/03.mp3" },
+        { "no": 4, "title": "I Have a Rainbow Car", "pdf": "materials/graded-reading-1/pdf/04.pdf", "audio": "materials/graded-reading-1/audio/04.mp3" },
+        { "no": 5, "title": "My Camel", "pdf": "materials/graded-reading-1/pdf/05.pdf", "audio": "materials/graded-reading-1/audio/05.mp3" },
+        { "no": 6, "title": "A Special Guest", "pdf": "materials/graded-reading-1/pdf/06.pdf", "audio": "materials/graded-reading-1/audio/06.mp3" },
+        { "no": 7, "title": "Guess! What Are These?", "pdf": "materials/graded-reading-1/pdf/07.pdf", "audio": "materials/graded-reading-1/audio/07.mp3" },
+        { "no": 8, "title": "Let's Play Together", "pdf": "materials/graded-reading-1/pdf/08.pdf", "audio": "materials/graded-reading-1/audio/08.mp3" },
+        { "no": 9, "title": "Grandpa's Umbrellas", "pdf": "materials/graded-reading-1/pdf/09.pdf", "audio": "materials/graded-reading-1/audio/09.mp3" },
+        { "no": 10, "title": "Ten Cuttlefish", "pdf": "materials/graded-reading-1/pdf/10.pdf", "audio": "materials/graded-reading-1/audio/10.mp3" }
+      ]
+    }
+  ]
+}
