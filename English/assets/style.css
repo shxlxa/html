@@ -362,6 +362,12 @@ body.reader {
   font-variant-numeric: tabular-nums;
 }
 
+.audio-controls .auto-next-btn.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
 /* 课程抽屉 */
 
 .drawer-mask {

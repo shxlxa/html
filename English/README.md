@@ -51,6 +51,9 @@ English/
 
 4. 提交并推送，GitHub Pages 会自动更新，首页会自动多出一张系列卡片，无需改任何代码。
 
+> 某课如果没有 PDF（纯音频），把 `pdf` 字段设为 `null` 即可；PPT 素材可先用 LibreOffice 转成 PDF：
+> `/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf --outdir 输出目录 文件.ppt`
+
 > 注意：GitHub 单个文件不能超过 100MB，音频建议使用 MP3 格式。
 
 ## 本地预览

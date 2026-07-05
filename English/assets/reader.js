@@ -4,7 +4,7 @@
 
   const params = new URLSearchParams(location.search);
   const seriesId = params.get('series');
-  const lessonNo = parseInt(params.get('lesson'), 10) || 1;
+  const startNo = parseInt(params.get('lesson'), 10) || 1;
 
   const pdfContainer = document.getElementById('pdfContainer');
   const pdfStatus = document.getElementById('pdfStatus');
@@ -17,6 +17,10 @@
   const curTime = document.getElementById('curTime');
   const durTime = document.getElementById('durTime');
   const rateBtn = document.getElementById('rateBtn');
+  const autoNextBtn = document.getElementById('autoNextBtn');
+  const drawer = document.getElementById('drawer');
+  const drawerMask = document.getElementById('drawerMask');
+  const drawerList = document.getElementById('drawerList');
 
   // ---------- 加载目录数据 ----------
   let catalog;
@@ -28,41 +32,21 @@
   }
 
   const series = catalog.series.find(s => s.id === seriesId) || catalog.series[0];
-  const lesson = series.lessons.find(l => l.no === lessonNo) || series.lessons[0];
-  const idx = series.lessons.indexOf(lesson);
+  let lesson = series.lessons.find(l => l.no === startNo) || series.lessons[0];
 
-  document.title = `${lesson.title} - 英语学习资料库`;
-  lessonTitle.textContent = `${lesson.no}. ${lesson.title}`;
-  localStorage.setItem('english:lastRead', JSON.stringify({ series: series.id, lesson: lesson.no }));
+  // ---------- 自动连播设置（默认开启） ----------
+  let autoNext = localStorage.getItem('english:autoNext') !== 'off';
 
-  // ---------- 上一课 / 下一课 ----------
-  function lessonUrl(l) {
-    return `reader.html?series=${encodeURIComponent(series.id)}&lesson=${l.no}`;
+  function renderAutoNextBtn() {
+    autoNextBtn.textContent = autoNext ? '连播开' : '连播关';
+    autoNextBtn.classList.toggle('on', autoNext);
   }
-  const prev = series.lessons[idx - 1];
-  const next = series.lessons[idx + 1];
-  prevBtn.disabled = !prev;
-  nextBtn.disabled = !next;
-  prevBtn.onclick = () => prev && (location.href = lessonUrl(prev));
-  nextBtn.onclick = () => next && (location.href = lessonUrl(next));
+  renderAutoNextBtn();
 
-  // ---------- 课程抽屉 ----------
-  const drawer = document.getElementById('drawer');
-  const drawerMask = document.getElementById('drawerMask');
-  document.getElementById('drawerTitle').textContent = series.title;
-  document.getElementById('drawerList').innerHTML = series.lessons.map(l => `
-    <li>
-      <a href="${lessonUrl(l)}" class="${l.no === lesson.no ? 'active' : ''}">
-        <span class="no">${l.no}</span><span>${l.title}</span>
-      </a>
-    </li>`).join('');
-  document.getElementById('menuBtn').onclick = () => {
-    drawer.classList.add('open');
-    drawerMask.classList.add('open');
-  };
-  drawerMask.onclick = () => {
-    drawer.classList.remove('open');
-    drawerMask.classList.remove('open');
+  autoNextBtn.onclick = () => {
+    autoNext = !autoNext;
+    localStorage.setItem('english:autoNext', autoNext ? 'on' : 'off');
+    renderAutoNextBtn();
   };
 
   // ---------- PDF 渲染 ----------
@@ -100,19 +84,34 @@
     }
   }
 
-  try {
-    pdfDoc = await pdfjsLib.getDocument(lesson.pdf).promise;
-    await renderPdf();
-  } catch (e) {
-    pdfStatus.textContent = 'PDF 加载失败，请检查网络后刷新重试';
+  async function loadPdf(url) {
+    renderToken++;
+    pdfDoc = null;
+    pdfContainer.querySelectorAll('canvas').forEach(c => c.remove());
+    pdfStatus.style.display = '';
+
+    if (!url) {
+      pdfStatus.textContent = '本课暂无图书文件，请直接收听音频 🎧';
+      return;
+    }
+    pdfStatus.textContent = '正在加载 PDF…';
+    try {
+      pdfDoc = await pdfjsLib.getDocument(url).promise;
+      await renderPdf();
+    } catch (e) {
+      pdfStatus.style.display = '';
+      pdfStatus.textContent = 'PDF 加载失败，请检查网络后刷新重试';
+    }
   }
 
   document.getElementById('zoomInBtn').onclick = async () => {
+    if (!pdfDoc) return;
     const page = await pdfDoc.getPage(1);
     scale = (scale || fitScale(page)) * 1.2;
     renderPdf();
   };
   document.getElementById('zoomOutBtn').onclick = async () => {
+    if (!pdfDoc) return;
     const page = await pdfDoc.getPage(1);
     scale = (scale || fitScale(page)) / 1.2;
     renderPdf();
@@ -129,10 +128,82 @@
     resizeTimer = setTimeout(renderPdf, 300);
   });
 
-  // ---------- 音频播放器 ----------
-  const progressKey = `english:progress:${series.id}:${lesson.no}`;
-  audio.src = lesson.audio;
+  // ---------- 课程切换（页内切换，不刷新页面） ----------
+  function progressKey() {
+    return `english:progress:${series.id}:${lesson.no}`;
+  }
 
+  function lessonIndex() {
+    return series.lessons.indexOf(lesson);
+  }
+
+  function loadLesson(l, opts = {}) {
+    lesson = l;
+    const idx = lessonIndex();
+
+    document.title = `${lesson.title} - 英语学习资料库`;
+    lessonTitle.textContent = `${lesson.no}. ${lesson.title}`;
+    history.replaceState(null, '', `reader.html?series=${encodeURIComponent(series.id)}&lesson=${lesson.no}`);
+    localStorage.setItem('english:lastRead', JSON.stringify({ series: series.id, lesson: lesson.no }));
+
+    prevBtn.disabled = idx <= 0;
+    nextBtn.disabled = idx >= series.lessons.length - 1;
+
+    drawerList.querySelectorAll('a').forEach(a => {
+      a.classList.toggle('active', parseInt(a.dataset.no, 10) === lesson.no);
+    });
+
+    scale = 0;
+    loadPdf(lesson.pdf);
+
+    audio.src = lesson.audio;
+    seekBar.value = 0;
+    seekBar.style.setProperty('--played', '0%');
+    curTime.textContent = '0:00';
+    durTime.textContent = '0:00';
+    if (opts.autoplay) {
+      audio.play().catch(() => {});
+    }
+  }
+
+  prevBtn.onclick = () => {
+    const idx = lessonIndex();
+    if (idx > 0) loadLesson(series.lessons[idx - 1]);
+  };
+  nextBtn.onclick = () => {
+    const idx = lessonIndex();
+    if (idx < series.lessons.length - 1) loadLesson(series.lessons[idx + 1]);
+  };
+
+  // ---------- 课程抽屉 ----------
+  document.getElementById('drawerTitle').textContent = series.title;
+  drawerList.innerHTML = series.lessons.map(l => `
+    <li>
+      <a href="reader.html?series=${encodeURIComponent(series.id)}&lesson=${l.no}" data-no="${l.no}">
+        <span class="no">${l.no}</span><span>${l.title}</span>
+      </a>
+    </li>`).join('');
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    drawerMask.classList.remove('open');
+  }
+  document.getElementById('menuBtn').onclick = () => {
+    drawer.classList.add('open');
+    drawerMask.classList.add('open');
+  };
+  drawerMask.onclick = closeDrawer;
+
+  drawerList.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    e.preventDefault();
+    const l = series.lessons.find(x => x.no === parseInt(a.dataset.no, 10));
+    if (l && l !== lesson) loadLesson(l);
+    closeDrawer();
+  });
+
+  // ---------- 音频播放器 ----------
   function fmt(sec) {
     if (!isFinite(sec)) return '0:00';
     const m = Math.floor(sec / 60);
@@ -142,7 +213,7 @@
 
   audio.addEventListener('loadedmetadata', () => {
     durTime.textContent = fmt(audio.duration);
-    const saved = parseFloat(localStorage.getItem(progressKey));
+    const saved = parseFloat(localStorage.getItem(progressKey()));
     if (saved && saved > 3 && saved < audio.duration - 3) {
       audio.currentTime = saved;
     }
@@ -154,15 +225,20 @@
       const pct = (audio.currentTime / audio.duration) * 100;
       seekBar.value = pct;
       seekBar.style.setProperty('--played', pct + '%');
-      localStorage.setItem(progressKey, audio.currentTime);
+      localStorage.setItem(progressKey(), audio.currentTime);
     }
   });
 
   audio.addEventListener('play', () => { playBtn.textContent = '⏸'; });
   audio.addEventListener('pause', () => { playBtn.textContent = '▶'; });
+
   audio.addEventListener('ended', () => {
     playBtn.textContent = '▶';
-    localStorage.removeItem(progressKey);
+    localStorage.removeItem(progressKey());
+    const idx = lessonIndex();
+    if (autoNext && idx < series.lessons.length - 1) {
+      loadLesson(series.lessons[idx + 1], { autoplay: true });
+    }
   });
 
   playBtn.onclick = () => (audio.paused ? audio.play() : audio.pause());
@@ -196,4 +272,7 @@
       playBtn.onclick();
     }
   });
+
+  // ---------- 初始化 ----------
+  loadLesson(lesson);
 })();

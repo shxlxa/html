@@ -17,6 +17,40 @@
         { "no": 9, "title": "Grandpa's Umbrellas", "pdf": "materials/graded-reading-1/pdf/09.pdf", "audio": "materials/graded-reading-1/audio/09.mp3" },
         { "no": 10, "title": "Ten Cuttlefish", "pdf": "materials/graded-reading-1/pdf/10.pdf", "audio": "materials/graded-reading-1/audio/10.mp3" }
       ]
+    },
+    {
+      "id": "fun-alphabet",
+      "title": "攀登英语·有趣的字母",
+      "description": "26 个字母一个故事，趣味动画绘本配朗读音频",
+      "cover": "🔤",
+      "lessons": [
+        { "no": 1, "title": "A · Frank the Rat", "pdf": "materials/fun-alphabet/pdf/01.pdf", "audio": "materials/fun-alphabet/audio/01.mp3" },
+        { "no": 2, "title": "B · The Biscuits", "pdf": "materials/fun-alphabet/pdf/02.pdf", "audio": "materials/fun-alphabet/audio/02.mp3" },
+        { "no": 3, "title": "C · Cool Cat", "pdf": "materials/fun-alphabet/pdf/03.pdf", "audio": "materials/fun-alphabet/audio/03.mp3" },
+        { "no": 4, "title": "D · Dancing Dad", "pdf": "materials/fun-alphabet/pdf/04.pdf", "audio": "materials/fun-alphabet/audio/04.mp3" },
+        { "no": 5, "title": "E · Red Ben", "pdf": "materials/fun-alphabet/pdf/05.pdf", "audio": "materials/fun-alphabet/audio/05.mp3" },
+        { "no": 6, "title": "F · The Frog's Love Story", "pdf": "materials/fun-alphabet/pdf/06.pdf", "audio": "materials/fun-alphabet/audio/06.mp3" },
+        { "no": 7, "title": "G · Wow! A Goat!", "pdf": "materials/fun-alphabet/pdf/07.pdf", "audio": "materials/fun-alphabet/audio/07.mp3" },
+        { "no": 8, "title": "H · Hungry Hat", "pdf": "materials/fun-alphabet/pdf/08.pdf", "audio": "materials/fun-alphabet/audio/08.mp3" },
+        { "no": 9, "title": "I · A Big, Big Day", "pdf": "materials/fun-alphabet/pdf/09.pdf", "audio": "materials/fun-alphabet/audio/09.mp3" },
+        { "no": 10, "title": "J · Jack and Jim", "pdf": "materials/fun-alphabet/pdf/10.pdf", "audio": "materials/fun-alphabet/audio/10.mp3" },
+        { "no": 11, "title": "K · The King is…", "pdf": "materials/fun-alphabet/pdf/11.pdf", "audio": "materials/fun-alphabet/audio/11.mp3" },
+        { "no": 12, "title": "L · Look! Look! Look!", "pdf": null, "audio": "materials/fun-alphabet/audio/12.mp3" },
+        { "no": 13, "title": "M · If You Give a Mouse a Mooncake", "pdf": "materials/fun-alphabet/pdf/13.pdf", "audio": "materials/fun-alphabet/audio/13.mp3" },
+        { "no": 14, "title": "N · Mr. No-Nose", "pdf": "materials/fun-alphabet/pdf/14.pdf", "audio": "materials/fun-alphabet/audio/14.mp3" },
+        { "no": 15, "title": "O · What's Going On", "pdf": "materials/fun-alphabet/pdf/15.pdf", "audio": "materials/fun-alphabet/audio/15.mp3" },
+        { "no": 16, "title": "P · The Pig's Backpack", "pdf": "materials/fun-alphabet/pdf/16.pdf", "audio": "materials/fun-alphabet/audio/16.mp3" },
+        { "no": 17, "title": "Q · A Quiet Duck", "pdf": "materials/fun-alphabet/pdf/17.pdf", "audio": "materials/fun-alphabet/audio/17.mp3" },
+        { "no": 18, "title": "R · Rabbits Run, Run, Run", "pdf": "materials/fun-alphabet/pdf/18.pdf", "audio": "materials/fun-alphabet/audio/18.mp3" },
+        { "no": 19, "title": "S · Sam Wants to Be Strong", "pdf": "materials/fun-alphabet/pdf/19.pdf", "audio": "materials/fun-alphabet/audio/19.mp3" },
+        { "no": 20, "title": "T · Tick Tock", "pdf": "materials/fun-alphabet/pdf/20.pdf", "audio": "materials/fun-alphabet/audio/20.mp3" },
+        { "no": 21, "title": "U · It's Fun to Jump", "pdf": "materials/fun-alphabet/pdf/21.pdf", "audio": "materials/fun-alphabet/audio/21.mp3" },
+        { "no": 22, "title": "V · Vicky Visits a Village", "pdf": "materials/fun-alphabet/pdf/22.pdf", "audio": "materials/fun-alphabet/audio/22.mp3" },
+        { "no": 23, "title": "W · I Am a Witch", "pdf": "materials/fun-alphabet/pdf/23.pdf", "audio": "materials/fun-alphabet/audio/23.mp3" },
+        { "no": 24, "title": "X · The Fox and the Ox", "pdf": "materials/fun-alphabet/pdf/24.pdf", "audio": "materials/fun-alphabet/audio/24.mp3" },
+        { "no": 25, "title": "Y · Maya's Yo-Yo", "pdf": "materials/fun-alphabet/pdf/25.pdf", "audio": "materials/fun-alphabet/audio/25.mp3" },
+        { "no": 26, "title": "Z · Zack the Zebra", "pdf": "materials/fun-alphabet/pdf/26.pdf", "audio": "materials/fun-alphabet/audio/26.mp3" }
+      ]
     }
   ]
 }
