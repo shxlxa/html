@@ -1,6 +1,6 @@
 {
-  "key" : "Mkx0SUw2NGMyWEJneUl6dW9aZlB1OWNsVVBpN3ZQSGpZOXZoWjRhalZCN1JXdVozejRvMg==",
-  "url" : "https://yunwu.ai/v1/chat/completions",
+  "key" : "dEt6VVFJUHUxckFhRjNySjhmM3M3ZG5ieW92eG9MNzRlTk5PY2M5dnVlZEdnOGpmQUJDRA==",
+  "url" : "https://api.openlux.ai/v1/chat/completions",
   "enable" : "1",
   "models" : [
     "gpt-3.5-turbo-0125",
