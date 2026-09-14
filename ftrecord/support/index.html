@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FTRecord support, setup, permission, recording, and recovery guidance.">
+    <title>Support · FTRecord</title>
+    <link rel="icon" href="../assets/icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../site.js" defer></script>
+</head>
+<body data-page="support" style="--icon-url: url('assets/icon.png')">
+    <header class="site-header">
+        <a class="brand" href="../">
+            <img src="../assets/icon.png" alt="">
+            <span>FTRecord</span>
+        </a>
+        <div class="header-tools">
+            <a class="header-link" href="../privacy/" data-i18n="navPrivacy">Privacy</a>
+            <label>
+                <span hidden>Language</span>
+                <select class="language-picker" data-language-picker aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="zh-Hans">简体中文</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="es">Español</option>
+                    <option value="pt-BR">Português (Brasil)</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero compact-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">FTRecord</p>
+                <h1 data-i18n="supportTitle">Support</h1>
+                <p class="hero-summary" data-i18n="supportSummary">Setup guidance for recording, permissions, local files, and recovery.</p>
+            </div>
+        </section>
+
+        <article class="document">
+            <header class="document-intro">
+                <h2 data-i18n="supportHeading">FTRecord Support</h2>
+                <p class="effective-date" data-i18n="requirements">Requires macOS 15 or later on Apple silicon</p>
+            </header>
+            <div data-sections>
+                <section class="policy-section reveal"><h3>Start a recording</h3><p>Open FTRecord, choose Screen, Camera, or Audio in Settings, and select your video and audio options. Click Start Recording. For screen mode, drag to select a region, adjust the preparation controls if needed, then click the red record button.</p></section>
+                <section class="policy-section reveal"><h3>Permissions</h3><p>FTRecord may need Screen &amp; System Audio, Camera, and Microphone permissions. Open FTRecord Settings &gt; Permissions to see their status and jump to macOS System Settings. After changing screen recording access, quit and reopen FTRecord.</p></section>
+                <section class="policy-section reveal"><h3>Pause and stop</h3><p>Use the floating control bar, the menu bar icon, or your selected global shortcuts to pause, resume, or stop. A red border and visible control bar indicate an active screen recording.</p></section>
+                <section class="policy-section reveal"><h3>Recordings and storage</h3><p>Recordings are saved to Movies/FTRecord by default. Choose another folder in FTRecord Settings &gt; Recording. The media library lets you preview, rename, reveal, share, trim, or move a recording to the Trash.</p></section>
+                <section class="policy-section reveal"><h3>Recover an interrupted recording</h3><p>Open Recovery in the sidebar. FTRecord lists playable fragments left by interrupted sessions. Choose Recover to move a playable file to its intended folder, or Discard to remove it.</p></section>
+                <section class="policy-section reveal"><h3>Contact</h3><p>For support, bug reports, or feedback, contact the developer through GitHub. Include your macOS and FTRecord versions, recording mode, permission status, and steps to reproduce. Do not include recordings, passwords, or sensitive information.</p><div class="actions"><a class="button primary" href="https://github.com/shxlxa" data-i18n="contactAction">Contact on GitHub</a><a class="button" href="../privacy/" data-i18n="privacyAction">Read the privacy policy</a></div></section>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer"><p>© 2026 FTRecord</p><p><a href="../">FTRecord</a> · <a href="../privacy/" data-i18n="navPrivacy">Privacy</a></p></footer>
+</body>
+</html>
