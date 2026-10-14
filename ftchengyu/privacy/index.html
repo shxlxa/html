@@ -47,7 +47,7 @@
         <article class="document">
             <header class="document-intro">
                 <h2>成语闯关隐私政策</h2>
-                <p class="effective-date">生效日期：2026年10月8日</p>
+                <p class="effective-date">生效日期：2026年10月13日</p>
             </header>
 
             <section class="policy-section reveal">
@@ -56,7 +56,7 @@
 
             <section class="policy-section reveal">
                 <h3>1. 适用范围</h3>
-                <p>本政策适用于您通过 App Store 或其他合法渠道获取并使用「成语闯关」的全部功能，包括成语闯关、学习与收藏、设置、问题反馈，以及后续可能开放的 VIP / 内购服务。</p>
+                <p>本政策适用于您通过 App Store 或其他合法渠道获取并使用「成语闯关」的全部功能，包括成语闯关、学习与收藏、设置、问题反馈，以及 VIP 会员（内购 / 订阅）服务。</p>
                 <p>本政策不适用于第三方独立提供的服务（例如 Apple 的 iCloud、App Store、系统邮件与分享能力）。该等服务适用其各自的隐私政策与条款。</p>
             </section>
 
@@ -85,14 +85,21 @@
                 <h3>2.3 问题反馈</h3>
                 <p>当您主动通过邮件反馈问题时，邮件内容由您撰写；为保证问题定位，邮件正文可能预填设备型号、系统版本、应用版本等信息。您发送邮件即表示同意将上述信息随反馈一并提交至我们的客服邮箱。</p>
 
-                <h3>2.4 内购与订阅（若开通）</h3>
-                <p>若本应用开放 VIP 或其他内购/订阅，支付、账单与订阅状态由 <strong>Apple App Store / StoreKit</strong> 处理。我们可能在本地缓存 VIP 权益状态（例如会员等级、到期时间），用于解锁相应功能。具体支付信息由 Apple 收集与处理，适用 Apple 的隐私政策与媒体服务条款。</p>
+                <h3>2.4 内购与订阅</h3>
+                <p>本应用提供 VIP 会员（月度订阅、年度订阅、永久买断）。支付、账单与订阅状态由 <strong>Apple App Store / StoreKit</strong> 处理，我们不会获取您的银行卡等支付信息。</p>
+                <p>为校验与恢复 VIP 权益，本应用使用第三方订阅管理服务 <strong>RevenueCat</strong>（RevenueCat, Inc.）。使用该服务时，RevenueCat 会收到以下信息：</p>
+                <ul>
+                    <li>由 RevenueCat 随机生成的匿名用户标识（App User ID），不包含您的姓名、邮箱或 Apple ID；</li>
+                    <li>购买记录与订阅状态（购买的商品、购买与到期时间、是否有效）；</li>
+                    <li>基础设备与应用信息（如系统版本、应用版本、语言与地区、IP 地址），用于交易校验与问题排查。</li>
+                </ul>
+                <p>上述信息仅用于验证 VIP 权益、恢复购买与保障交易安全，<strong>不用于广告或跨 App 追踪</strong>。RevenueCat 的处理规则见其隐私政策：<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">https://www.revenuecat.com/privacy</a>。我们还会在本地缓存 VIP 权益状态（例如会员等级、到期时间），以便离线时正常解锁。</p>
 
                 <h3>2.5 我们不主动收集的内容</h3>
                 <ul>
                     <li>本应用不申请麦克风、相机、相册、定位、通讯录等敏感权限（当前版本）；</li>
                     <li>语音朗读使用系统语音合成（TTS），在设备本地朗读成语文本，<strong>不进行录音上传</strong>；</li>
-                    <li>本应用不集成第三方广告或统计分析 SDK，不进行跨 App 追踪。</li>
+                    <li>本应用不集成第三方广告或统计分析 SDK（用于内购校验的 RevenueCat 见第 2.4 节），不进行跨 App 追踪。</li>
                 </ul>
             </section>
 
@@ -103,7 +110,7 @@
                     <li>提供、维护与改进成语闯关、学习、收藏与设置等功能；</li>
                     <li>在设备间同步进度与收藏（在您启用 iCloud 的前提下）；</li>
                     <li>响应您的问题反馈与客服沟通；</li>
-                    <li>验证与展示 VIP / 内购权益（若开通）；</li>
+                    <li>验证、恢复与展示 VIP / 内购权益；</li>
                     <li>履行法律法规要求的义务。</li>
                 </ul>
                 <p>未经您同意，我们不会将您的个人信息出售给第三方。</p>
@@ -125,10 +132,11 @@
                 <ul>
                     <li><strong>Apple iCloud</strong>：可选同步进度与收藏</li>
                     <li><strong>App Store / StoreKit</strong>：内购、订阅、恢复购买、评分请求（若使用）</li>
+                    <li><strong>RevenueCat（第三方）</strong>：订阅与内购权益校验、恢复购买；收到匿名用户标识、购买记录与基础设备信息</li>
                     <li><strong>系统邮件（MessageUI）</strong>：发送问题反馈</li>
                     <li><strong>系统分享</strong>：您主动分享应用或内容时，由您选择的目标 App 接收</li>
                 </ul>
-                <p>除上述系统能力外，本应用当前<strong>未集成</strong>其他第三方数据分析、广告或社交登录 SDK。</p>
+                <p>除上述系统能力与 RevenueCat 外，本应用当前<strong>未集成</strong>其他第三方数据分析、广告或社交登录 SDK。</p>
             </section>
 
             <section class="policy-section reveal">
@@ -139,7 +147,7 @@
             <section class="policy-section reveal">
                 <h3>7. 信息安全与跨境说明</h3>
                 <p>我们采取合理措施保护本地数据的安全，但请理解任何电子存储或传输方式都无法保证绝对安全。请妥善保管您的设备与 Apple ID。</p>
-                <p>若相关数据经 Apple iCloud、App Store 等服务处理，可能涉及 Apple 的数据中心与跨境传输安排，具体以 Apple 的隐私政策为准。本应用自身不另行将您的学习数据上传至我们控制的境外服务器。</p>
+                <p>若相关数据经 Apple iCloud、App Store 等服务处理，可能涉及 Apple 的数据中心与跨境传输安排，具体以 Apple 的隐私政策为准。本应用自身不另行将您的学习数据上传至我们控制的境外服务器。RevenueCat 的服务器可能位于中国大陆境外（如美国），其收到的仅为第 2.4 节所述的匿名标识、购买记录与基础设备信息，不包含您的学习进度与收藏内容。</p>
             </section>
 
             <section class="policy-section reveal">
