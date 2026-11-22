@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<meta name="theme-color" content="#0e1116">
+	<title>年度回测 · 创业板50 MA20 过滤策略</title>
+	<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-base="../">
+	<div class="wrap">
+		<header class="topbar">
+			<h1>创业板50</h1>
+			<nav class="tabs">
+				<a href="../">指数比值</a>
+				<a class="active" href="./">年度回测</a>
+			</nav>
+		</header>
+
+		<main id="app">
+			<section class="card">
+				<h2 id="kpiTitle">年度独立起跑回测</h2>
+				<div class="kpis" id="kpis">加载中…</div>
+				<div class="warn" id="warn"></div>
+			</section>
+
+			<section class="card">
+				<div class="toolbar">
+					<h2>分年度收益</h2>
+					<div class="chips" id="seriesChips"></div>
+				</div>
+				<div class="chart-box"><canvas id="barChart"></canvas></div>
+			</section>
+
+			<section class="card">
+				<div class="toolbar">
+					<h2>年度明细（点击年份展开交易）</h2>
+					<div class="chips"><button class="chip" id="extraToggle" type="button">显示蓄水版本</button></div>
+				</div>
+				<div class="table-wrap">
+					<table id="annualTable"></table>
+				</div>
+				<p class="small muted" id="tableNote"></p>
+			</section>
+
+			<section class="card">
+				<h2>策略规则与口径</h2>
+				<p id="rules" style="margin:0;font-size:14px"></p>
+				<details class="note">
+					<summary>口径说明</summary>
+					<ul id="notes"></ul>
+				</details>
+			</section>
+
+			<p class="notice">历史回测不代表未来表现，不构成投资建议。</p>
+		</main>
+	</div>
+
+	<script src="../assets/chart.umd.min.js"></script>
+	<script src="../assets/common.js"></script>
+	<script src="../assets/strategy.js"></script>
+</body>
+</html>

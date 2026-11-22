@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<meta name="theme-color" content="#0e1116">
+	<title>指数比值 · 创业板指 ÷ 中证红利</title>
+	<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-base="./">
+	<div class="wrap">
+		<header class="topbar">
+			<h1>创业板50</h1>
+			<nav class="tabs">
+				<a class="active" href="./">指数比值</a>
+				<a href="strategy/">年度回测</a>
+			</nav>
+		</header>
+
+		<main id="app">
+			<section class="card">
+				<div class="hero">
+					<div>
+						<div class="hero-value" id="heroValue">--</div>
+					</div>
+					<div class="hero-side">
+						<span class="delta" id="heroDelta"></span>
+						<span class="pill neutral" id="heroZone"></span>
+					</div>
+				</div>
+				<div class="hero-meta" id="heroMeta">加载中…</div>
+			</section>
+
+			<section class="card">
+				<h2>比值曲线</h2>
+				<div class="chart-box"><canvas id="ratioChart"></canvas></div>
+				<div class="range-btns" id="rangeBtns">
+					<button data-years="1">近1年</button>
+					<button data-years="3">近3年</button>
+					<button data-years="5">近5年</button>
+					<button data-years="0" class="active">全部</button>
+				</div>
+				<div class="legend" id="legend"></div>
+			</section>
+
+			<section class="card">
+				<h2 id="statsTitle">所选区间统计</h2>
+				<div class="stats" id="stats"></div>
+			</section>
+
+			<p class="notice">
+				X = 创业板指(399006) ÷ 中证红利(000922)，均为价格指数。高低估区仅为历史参考，不参与买卖或仓位判断，不构成投资建议。
+			</p>
+		</main>
+	</div>
+
+	<script src="assets/chart.umd.min.js"></script>
+	<script src="assets/common.js"></script>
+	<script src="assets/ratio.js"></script>
+</body>
+</html>
