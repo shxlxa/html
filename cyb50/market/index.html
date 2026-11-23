@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<meta name="theme-color" content="#0e1116">
+	<title>市场概览 · 成交量与 ETF 涨跌幅</title>
+	<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-base="../">
+	<div class="wrap">
+		<header class="topbar">
+			<h1>创业板50</h1>
+			<nav class="tabs">
+				<a href="../">指数比值</a>
+				<a class="active" href="./">市场概览</a>
+				<a href="../strategy/">年度回测</a>
+			</nav>
+		</header>
+
+		<main id="app">
+			<section class="card">
+				<h2>今日解读</h2>
+				<div class="analysis" id="analysisText">加载中…</div>
+				<div class="analysis-meta" id="analysisMeta"></div>
+			</section>
+
+			<section class="card">
+				<h2 id="kpiTitle">最新交易日</h2>
+				<div class="kpis three" id="kpis"></div>
+			</section>
+
+			<section class="card">
+				<div class="range-btns" id="rangeBtns">
+					<button data-days="21">近1月</button>
+					<button data-days="63" class="active">近3月</button>
+					<button data-days="250">近1年</button>
+					<button data-days="0">全部</button>
+				</div>
+			</section>
+
+			<section class="card">
+				<h2>两市成交量</h2>
+				<div class="chart-box"><canvas id="volumeChart"></canvas></div>
+				<div class="legend" id="volumeLegend"></div>
+			</section>
+
+			<section class="card">
+				<h2>ETF 区间累计涨跌幅</h2>
+				<div class="chart-box"><canvas id="etfChart"></canvas></div>
+				<div class="legend" id="etfLegend"></div>
+			</section>
+
+			<p class="notice" id="notice"></p>
+		</main>
+	</div>
+
+	<script src="../assets/chart.umd.min.js"></script>
+	<script src="../assets/common.js"></script>
+	<script src="../assets/market.js"></script>
+</body>
+</html>
