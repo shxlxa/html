@@ -1,8 +1,12 @@
 # 英语学习资料库
 
-一个纯静态的英语学习资料站：边看 PDF 绘本，边听配套音频。已部署在 GitHub Pages：
+一个纯静态的英语学习资料站。已部署在 GitHub Pages：
 
 <https://shxlxa.github.io/html/English/>
+
+> 2026-11-25 起，绘本 PDF 与配套音频（合计约 220MB）已从仓库移除，站点只保留课程目录结构。
+> 原因：每次 Pages 部署要打包上传 226MB artifact，导致 `deploy-pages` 查不到 artifact 而部署失败。
+> 课程清单（标题、封面）仍在，媒体文件需另行托管后再把 `pdf` / `audio` 字段加回 `catalog.json`。
 
 ## 功能
 
@@ -24,10 +28,7 @@ English/
 │   └── reader.js         # 阅读页逻辑（PDF.js + 音频播放器）
 ├── data/
 │   └── catalog.json      # 资料清单（唯一需要维护的数据文件）
-└── materials/
-    └── graded-reading-1/ # 分级阅读第一级
-        ├── pdf/01.pdf … 10.pdf
-        └── audio/01.mp3 … 10.mp3
+└── materials/            # 媒体文件目录（当前为空）
 ```
 
 ## 如何新增一套资料
@@ -54,7 +55,8 @@ English/
 > 某课如果没有 PDF（纯音频），把 `pdf` 字段设为 `null` 即可；PPT 素材可先用 LibreOffice 转成 PDF：
 > `/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf --outdir 输出目录 文件.ppt`
 
-> 注意：GitHub 单个文件不能超过 100MB，音频建议使用 MP3 格式。
+> 注意：媒体文件不要直接提交进本仓库，单个文件超过 100MB 会被 GitHub 拒绝，且会拖垮 Pages 部署；
+> 建议放到独立仓库、GitHub Releases 或对象存储，catalog.json 里写绝对 URL。
 
 ## 本地预览
 

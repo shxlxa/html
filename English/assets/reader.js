@@ -12,6 +12,7 @@
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const audio = document.getElementById('audio');
+  const audioBar = document.querySelector('.audio-bar');
   const playBtn = document.getElementById('playBtn');
   const seekBar = document.getElementById('seekBar');
   const curTime = document.getElementById('curTime');
@@ -91,7 +92,7 @@
     pdfStatus.style.display = '';
 
     if (!url) {
-      pdfStatus.textContent = '本课暂无图书文件，请直接收听音频 🎧';
+      pdfStatus.textContent = '本课图书与音频已下架';
       return;
     }
     pdfStatus.textContent = '正在加载 PDF…';
@@ -156,7 +157,13 @@
     scale = 0;
     loadPdf(lesson.pdf);
 
-    audio.src = lesson.audio;
+    if (lesson.audio) {
+      audioBar.style.display = '';
+      audio.src = lesson.audio;
+    } else {
+      audioBar.style.display = 'none';
+      audio.removeAttribute('src');
+    }
     seekBar.value = 0;
     seekBar.style.setProperty('--played', '0%');
     curTime.textContent = '0:00';
