@@ -11,6 +11,17 @@
 	let volumeChart = null;
 	let etfChart = null;
 
+	// 新数据为成交额（亿元），旧数据为成交量（亿股），按实际字段取值
+	function marketSeries() {
+		const isAmount = Array.isArray(data.amount);
+		return {
+			values: isAmount ? data.amount : data.volume,
+			unit: isAmount ? data.amount_unit : data.volume_unit,
+			components: isAmount ? data.amount_components : data.volume_components,
+			isAmount,
+		};
+	}
+
 	function xTick() {
 		return {
 			color: COLORS.tick,
@@ -81,13 +92,18 @@
 
 	function renderKpis() {
 		const s = data.summary;
+		const market = marketSeries();
+		const value = market.isAmount ? s.amount : s.volume;
+		const vsMa20 = market.isAmount ? s.amount_vs_ma20 : s.volume_vs_ma20;
+		const pctile = market.isAmount ? s.amount_pctile_1y : s.volume_pctile_1y;
 		const kpi = (label, value, vs, cls) =>
 			'<div class="kpi"><div class="label">' + label + '</div><div class="value ' + (cls || '') + '">' + value +
 			'</div><div class="vs">' + vs + '</div></div>';
 		$('kpiTitle').textContent = s.date.replace(/-/g, '/') + ' 收盘';
 		$('kpis').innerHTML =
-			kpi('沪深两市成交量', s.volume.toFixed(0) + ' 亿股',
-				'前 20 日均量的 ' + s.volume_vs_ma20.toFixed(2) + ' 倍 · 近1年分位 ' + (s.volume_pctile_1y * 100).toFixed(0) + '%') +
+			kpi(market.isAmount ? '沪深两市成交额' : '沪深两市成交量', value.toFixed(0) + ' ' + market.unit,
+				'前 20 日均' + (market.isAmount ? '额' : '量') + '的 ' + vsMa20.toFixed(2) + ' 倍 · 近1年分位 ' +
+				(pctile * 100).toFixed(0) + '%') +
 			kpi(data.etfs.cyb.name + ' ' + data.etfs.cyb.code, pct(s.cyb_pct),
 				'近5日 ' + pct(s.cyb_5d) + ' · 近20日 ' + pct(s.cyb_20d), signClass(s.cyb_pct)) +
 			kpi(data.etfs.hb.name + ' ' + data.etfs.hb.code, pct(s.hb_pct),
@@ -99,7 +115,8 @@
 	}
 
 	function buildCharts() {
-		const unit = data.volume_unit;
+		const market = marketSeries();
+		const unit = market.unit;
 		volumeChart = new Chart($('volumeChart').getContext('2d'), {
 			type: 'bar',
 			data: {
@@ -117,8 +134,8 @@
 			},
 			options: baseOptions((v) => v.toFixed(0), {
 				title: (items) => items[0].label,
-				label: (item) => (item.datasetIndex === 0 ? MA_WINDOW + ' 日均量 ' : '成交量 ') +
-					item.parsed.y.toFixed(1) + ' ' + unit,
+				label: (item) => (item.datasetIndex === 0 ? MA_WINDOW + ' 日均' + (market.isAmount ? '额' : '量') + ' ' :
+					(market.isAmount ? '成交额 ' : '成交量 ')) + item.parsed.y.toFixed(1) + ' ' + unit,
 			}),
 		});
 
@@ -140,9 +157,9 @@
 		});
 
 		$('volumeLegend').innerHTML =
-			'<span><i style="border-color:' + COLORS.volumeLast + '"></i>成交量（' + unit + '，' +
-			Object.values(data.volume_components).join(' + ') + '）</span>' +
-			'<span><i style="border-color:' + COLORS.ma + '"></i>' + MA_WINDOW + ' 日均量</span>';
+			'<span><i style="border-color:' + COLORS.volumeLast + '"></i>' + (market.isAmount ? '成交额' : '成交量') +
+			'（' + unit + '，' + Object.values(market.components).join(' + ') + '）</span>' +
+			'<span><i style="border-color:' + COLORS.ma + '"></i>' + MA_WINDOW + ' 日均' + (market.isAmount ? '额' : '量') + '</span>';
 		$('etfLegend').innerHTML =
 			'<span><i style="border-color:' + COLORS.cyb + '"></i>' + data.etfs.cyb.name + ' ' + data.etfs.cyb.code + '</span>' +
 			'<span><i style="border-color:' + COLORS.hb + '"></i>' + data.etfs.hb.name + ' ' + data.etfs.hb.code + '</span>';
@@ -153,7 +170,7 @@
 		const dates = data.dates.slice(start);
 		volumeChart.data.labels = dates;
 		volumeChart.data.datasets[0].data = ma20.slice(start);
-		volumeChart.data.datasets[1].data = data.volume.slice(start);
+		volumeChart.data.datasets[1].data = marketSeries().values.slice(start);
 		volumeChart.update();
 
 		etfChart.data.labels = dates;
@@ -176,11 +193,13 @@
 			showError($('app'), e);
 			return;
 		}
-		ma20 = movingAverage(data.volume, MA_WINDOW);
+		ma20 = movingAverage(marketSeries().values, MA_WINDOW);
 		renderAnalysis();
 		renderKpis();
 		buildCharts();
 		setRange(63);
+		const market = marketSeries();
+		$('marketTitle').textContent = market.isAmount ? '两市成交额' : '两市成交量';
 		$('notice').textContent = '数据源 ' + data.source + ' · 更新于 ' + data.generated_at +
 			'。ETF 涨跌幅按前复权收盘价计算。分析文字由大模型依据所列数据自动生成，仅供参考，不构成投资建议。';
 		$('rangeBtns').addEventListener('click', (e) => {
